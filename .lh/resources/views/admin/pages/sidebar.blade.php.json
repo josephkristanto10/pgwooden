@@ -1,0 +1,18 @@
+{
+    "sourceFile": "resources/views/admin/pages/sidebar.blade.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1731069624439,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1731069624439,
+            "name": "Commit-0",
+            "content": "<div class=\"container position-sticky z-index-sticky top-0\">\r\n    <div class=\"row\">\r\n      <div class=\"col-12\">\r\n        <!-- Navbar -->\r\n        <nav class=\"navbar navbar-expand-lg blur blur-rounded top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4\">\r\n          <div class=\"container-fluid\">\r\n            <a class=\"navbar-brand font-weight-bolder ms-lg-0 ms-3 \" href=\"../pages/dashboard.html\">\r\n              Soft UI Dashboard\r\n            </a>\r\n            <button class=\"navbar-toggler shadow-none ms-2\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navigation\" aria-controls=\"navigation\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n              <span class=\"navbar-toggler-icon mt-2\">\r\n                <span class=\"navbar-toggler-bar bar1\"></span>\r\n                <span class=\"navbar-toggler-bar bar2\"></span>\r\n                <span class=\"navbar-toggler-bar bar3\"></span>\r\n              </span>\r\n            </button>\r\n            <div class=\"collapse navbar-collapse\" id=\"navigation\">\r\n              <ul class=\"navbar-nav mx-auto\">\r\n                <li class=\"nav-item\">\r\n                  <a class=\"nav-link d-flex align-items-center me-2 active\" aria-current=\"page\" href=\"../pages/dashboard.html\">\r\n                    <i class=\"fa fa-chart-pie opacity-6 text-dark me-1\"></i>\r\n                    Dashboard\r\n                  </a>\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                  <a class=\"nav-link me-2\" href=\"../pages/profile.html\">\r\n                    <i class=\"fa fa-user opacity-6 text-dark me-1\"></i>\r\n                    Profile\r\n                  </a>\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                  <a class=\"nav-link me-2\" href=\"../pages/sign-up.html\">\r\n                    <i class=\"fas fa-user-circle opacity-6 text-dark me-1\"></i>\r\n                    Sign Up\r\n                  </a>\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                  <a class=\"nav-link me-2\" href=\"../pages/sign-in.html\">\r\n                    <i class=\"fas fa-key opacity-6 text-dark me-1\"></i>\r\n                    Sign In\r\n                  </a>\r\n                </li>\r\n              </ul>\r\n              <ul class=\"navbar-nav d-lg-block d-none\">\r\n                <li class=\"nav-item\">\r\n                  <a href=\"https://www.creative-tim.com/product/soft-ui-dashboard\" class=\"btn btn-sm btn-round mb-0 me-1 bg-gradient-dark\">Free download</a>\r\n                </li>\r\n              </ul>\r\n            </div>\r\n          </div>\r\n        </nav>\r\n        <!-- End Navbar -->\r\n      </div>\r\n    </div>\r\n  </div>"
+        }
+    ]
+}

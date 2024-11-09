@@ -1,0 +1,18 @@
+{
+    "sourceFile": "resources/views/support/menu.blade.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1730645257116,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1730645257116,
+            "name": "Commit-0",
+            "content": " <!-- Start Header Navigation -->\r\n <div class=\"navbar-header\">\r\n    <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navbar-menu\">\r\n        <i class=\"fa fa-bars\"></i>\r\n    </button>\r\n    <a class=\"navbar-brand\" href=\"index.html\">PGD Group</a>\r\n\r\n</div><!--/.navbar-header-->\r\n<!-- End Header Navigation -->\r\n\r\n<!-- Collect the nav links, forms, and other content for toggling -->\r\n<div class=\"collapse navbar-collapse menu-ui-design\" id=\"navbar-menu\">\r\n    <ul class=\"nav navbar-nav navbar-center\" data-in=\"fadeInDown\" data-out=\"fadeOutUp\">\r\n        <li class=\" scroll active\"><a href=\"#home\">Home</a></li>\r\n        <li class=\"scroll\"><a href=\"#new-arrivals\">Product </a></li>\r\n        <li class=\"scroll\"><a href=\"#feature\">About Us</a></li>\r\n        {{-- <li class=\"scroll\"><a href=\"#blog\">blog</a></li>\r\n        <li class=\"scroll\"><a href=\"#newsletter\">contact</a></li> --}}\r\n    </ul><!--/.nav -->\r\n</div><!-- /.navbar-collapse -->"
+        }
+    ]
+}
