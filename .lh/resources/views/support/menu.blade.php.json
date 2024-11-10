@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1730645257116,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1731163255538,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n <!-- End Header Navigation -->\r\n \r\n <!-- Collect the nav links, forms, and other content for toggling -->\r\n <div class=\"collapse navbar-collapse menu-ui-design\" id=\"navbar-menu\">\r\n-    <ul class=\"nav navbar-nav navbar-center\" data-in=\"fadeInDown\" data-out=\"fadeOutUp\">\r\n+    <ul class=\"nav navbar-nav navbar-right\" data-in=\"fadeInDown\" data-out=\"fadeOutUp\">\r\n         <li class=\" scroll active\"><a href=\"#home\">Home</a></li>\r\n         <li class=\"scroll\"><a href=\"#new-arrivals\">Product </a></li>\r\n         <li class=\"scroll\"><a href=\"#feature\">About Us</a></li>\r\n         {{-- <li class=\"scroll\"><a href=\"#blog\">blog</a></li>\r\n"
                 }
             ],
             "date": 1730645257116,

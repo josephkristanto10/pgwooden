@@ -10,7 +10,7 @@
 
 <!-- Collect the nav links, forms, and other content for toggling -->
 <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
-    <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
+    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
         <li class=" scroll active"><a href="#home">Home</a></li>
         <li class="scroll"><a href="#new-arrivals">Product </a></li>
         <li class="scroll"><a href="#feature">About Us</a></li>

@@ -56,15 +56,144 @@
   width: 100%;
   height: 100%;
 }
- 
+
+nav.navbar.bootsnav{
+	background-color:#f1f1f1 !important;
+	box-shadow: 0 2px 5px rgba(0,0,0,.2);
+}
+.btn-cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: 1px solid #ffffff;
+  width: 80px;
+  height: 30px;
+  white-space: nowrap;
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,.2);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+  border-radius: 3px;
+}
+.btn-cart.welcome-add-cart:hover {
+	color: #131312;
+  background: #f1f1f1;
+  border: 1px solid #f1f1f1;
+}
+
+.wrap-sticky nav.navbar.bootsnav {
+	height:75px;
+}
+.wrap-sticky nav.navbar.bootsnav.sticked{
+	height:100px;
+}
+.wrap-sticky nav.navbar.bootsnav.sticked .navbar-header a.navbar-brand, .wrap-sticky nav.navbar.bootsnav.sticked .navbar-header a.navbar-brand:hover, .wrap-sticky nav.navbar.bootsnav.sticked .navbar-header a.navbar-brand:focus {
+	padding:40px;
+}
+.navbar-header a.navbar-brand, .navbar-header a.navbar-brand:hover, .navbar-header a.navbar-brand:focus {
+  display: inline-block;
+  color: #616060;
+  font-size: 24px;
+  font-weight: 500;
+  padding: 25px 0px;
+  text-transform: capitalize;
+}
+.wrap-sticky nav.navbar.bootsnav.sticked ul.nav > li > a {
+  padding: 40px 25px;
+}
+nav.navbar.bootsnav ul.nav > li > a {
+  padding-top:30px;
+  padding-bottom:20px;
+}
+/* .single-inner-populer-products{
+	padding: 0px !important;
+} */
+
+
+@media (max-width: 576px) { 
+	#home{
+		height:700px;
+	
+	}
+	.single-inner-populer-products {
+		padding: 0px !important;
+	}
+
+	#title_pg_wooden{
+		font-size:20px !important;
+	}
+	#button_pg_wooden{
+		font-size:12px !important;
+		padding: 0px;
+		width: 130px;
+		height: 50px;
+		margin-top:20px;
+	}
+	.welcome-hero-txt{
+		margin-top:35%;
+	}
+	.btn-cart.welcome-add-cart, .btn-cart.welcome-add-cart.welcome-more-info{
+		line-height:0px;
+	}
+	nav{
+		opacity:0;
+		transition: 1s;
+	}
+	.sticked{
+		opacity:1;
+	}
+}
+
+
+@media (max-width: 768px) { 
+	#home{
+		height:700px;
+	}
+	.single-inner-populer-products {
+		padding: 0px !important;
+	}
+	#title_pg_wooden{
+		font-size:20px !important;
+	}
+	#button_pg_wooden{
+		font-size:12px !important;
+		padding: 0px;
+		width: 130px;
+		height: 50px;
+		margin-top:20px;
+	}
+	.welcome-hero-txt{
+		margin-top:40%;
+	}
+	.btn-cart.welcome-add-cart, .btn-cart.welcome-add-cart.welcome-more-info{
+		line-height:0px;
+	}
+	nav{
+		opacity:0;
+	}
+	.sticked{
+		opacity:1;
+	}
+ }
+
+
+@media (max-width: 992px) {  }
+
+
+@media (max-width: 1200px) {  }
+
+
+@media (max-width: 1400px) {  }
 		</style>
     </head>
 	
 	<body>
 	
-		<header id="home" class="welcome-hero">
+		<header id="home" class="welcome-hero" style = "background:url({{asset('assets/images/slider/background_slider.jpg')}});background-size:cover;background-repeat:no-repeat;">
 
-			<div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+			<div id="header-carousel" style = "height:100%;" class="carousel slide carousel-fade" data-ride="carousel">
 				<!--/.carousel-indicator -->
 				 <ol class="carousel-indicators">
 					<li data-target="#header-carousel" data-slide-to="0" class="active"><span class="small-circle"></span></li>
@@ -81,30 +210,40 @@
 							<div class="container">
 								<div class="welcome-hero-content">
 									<div class="row">
-										<div class="col-sm-7">
+										{{-- <div class="col-sm-5">
 											<div class="single-welcome-hero">
-												<div class="welcome-hero-txt">
-													<h4>PGD Wooden House</h4>
+												<div class="welcome-hero-img">
+													<img src="assets/images/slider/slider1.png" alt="slider image">
+												</div>
+											</div>
+										</div> --}}
+										<div class="col-md-12">
+											<div class="single-welcome-hero">
+												<div class="welcome-hero-txt" style = "text-align:center;">
+													<h1 id= "title_pg_wooden" style = "font-size:30px;color:white; text-shadow: 1px 1px #131312;opacity:0;transition:3s;">Welcome to PGD Wooden House</h1>
+													<button id= "button_pg_wooden" type="button" class="btn-cart welcome-add-cart" style = "opacity:0;">Create Furniture &nbsp;<i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i>
+													</button>
+													{{-- <h4>PGD Wooden House</h4>
 													<h2>Furniture Terbaik !</h2>
 													<p>
 														Pilihlah furniture yang berkualitas tinggi dengan harga yang terjangkau. 
 													</p>
 													
 													<button class="btn-cart welcome-add-cart" onclick="window.location.href='#'">
-														<span class="lnr lnr-plus-circle"></span>
-														add <span>to</span> cart
+												
+														See  <span>Product</span>
 													</button>
-													
+													 --}}
 												</div>
 											</div>
 										</div>
-										<div class="col-sm-5">
+										{{-- <div class="col-sm-5">
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-img">
 													<img src="assets/images/slider/slider1.png" alt="slider image">
 												</div>
 											</div>
-										</div>
+										</div> --}}
 									</div>
 								</div>
 							</div>
@@ -127,9 +266,9 @@
 				        <div class="top-search">
 				            <div class="container">
 				                <div class="input-group">
-				                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+				                    {{-- <span class="input-group-addon"><i class="fa fa-search"></i></span>
 				                    <input type="text" class="form-control" placeholder="Search">
-				                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+				                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span> --}}
 				                </div>
 				            </div>
 				        </div>
@@ -137,7 +276,7 @@
 
 				        <div class="container">            
 				            <!-- Start Atribute Navigation -->
-				            <div class="attr-nav">
+				            {{-- <div class="attr-nav">
 				                <ul>
 				                	<li class="search">
 				                		<a href="#"><span class="lnr lnr-magnifier"></span></a>
@@ -188,7 +327,7 @@
 				                        </ul>
 				                    </li>
 				                </ul>
-				            </div>
+				            </div> --}}
 				           
 
 				           @include('support/menu')
@@ -203,7 +342,7 @@
 		</header>
 		
 		<section id="About Us" class="new-arrivals">
-			<div class="container">
+			<div class="container" style = "width:100%;">
 				<div class="section-header">
 					{{-- <h2>About Us</h2> --}}
 				</div><!--/.section-header-->
@@ -232,7 +371,7 @@
 											{{-- <div class="populer-products-price">
 												<h4>Sales Start from <span>$99.00</span></h4>
 											</div> --}}
-											<a href = "#Portofolio"><button class="btn-cart welcome-add-cart" style = "border-radius:50px;margin-top:10px;" onclick="window.location.href='#'">
+											<a href = "#Portofolio"><button class="btn-cart welcome-add-cart" style = "border-radius:50px;margin-top:10px;color:#131312;" onclick="window.location.href='#'">
 												Lihat Portofolio
 											</button></a>
 										</div>
@@ -259,7 +398,7 @@
 								<div class="single-populer-products">
 									
 									<h2><a href="#">Client</a></h2>
-									<h1 ><a href="#" style = "font-size:40px !important;">100++</a></h1><br>
+									<h1 ><a href="#" style = "font-size:40px !important;"><span id = "jumlah_client">0</span></a></h1><br>
 									<div class="single-populer-products-para">
 										<p>Jumlah klien kami sampai detik ini yang kami layani untuk pembuatan custom furniture.</p>
 									</div>
@@ -268,16 +407,16 @@
 							<div class="col-md-4">
 								<div class="single-populer-products">
 									<h2><a href="#">Proyek</a></h2>
-									<h1 ><a href="#" style = "font-size:40px !important;">153++</a></h1><br>
+									<h1 ><a href="#" style = "font-size:40px !important;"><span id = "jumlah_proyek">153++</span></a></h1><br>
 									<div class="single-populer-products-para">
-										<p>153 Proyek yang sudah kami terima dan kami kerjakan, baik secara B2B, maupun B2C</p>
+										<p>Beberapa Proyek yang sudah kami terima dan kami kerjakan, baik secara B2B, maupun B2C</p>
 									</div>
 								</div>
 							</div>
 							<div class="col-md-4">
 								<div class="single-populer-products">
 									<h2><a href="#">Lokasi</a></h2>
-									<h1 ><a href="#" style = "font-size:40px !important;">10++</a></h1><br>
+									<h1 ><a href="#" style = "font-size:40px !important;"><span id = "jumlah_lokasi">10++</span></a></h1><br>
 									<div class="single-populer-products-para">
 										<p>Beberapa proyek kami sudah tersebar di beberapa lokasi. Proyek kami tersebar
 											di kota jepara, surabaya, jakarta dan lain lain.
@@ -879,5 +1018,47 @@
         <script src="{{asset('assets/js/custom.js')}}"></script>
         
     </body>
+	<script>
+		$(document).ready(function () {
+			$("#title_pg_wooden").css("opacity","1");
+			$("#button_pg_wooden").css("opacity","1");
+			var status_animasi_summary = "on";
+			var jumlah_client = 0;
+			var jumlah_proyek = 0;
+			var jumlah_lokasi = 0;
+			$(window).scroll(function(){
+				var aTop = $('#Ringkasan Proyek').height();
+				if($(this).scrollTop()>=aTop){
+					
+					
+					// alert('header just passed.');
+					// instead of alert you can use to show your ad
+					// something like $('#footAd').slideup();
+					if(status_animasi_summary == "on"){
+						setInterval(() => {
+							if(jumlah_client<1000){
+								jumlah_client+=5;
+								$("#jumlah_client").text(jumlah_client+ "++");
+							}
+							if(jumlah_proyek<=250){
+								$("#jumlah_proyek").text(jumlah_proyek + "++");
+								jumlah_proyek+=1;
+							}
+							if(jumlah_lokasi<100){
+								jumlah_lokasi+=1;
+								$("#jumlah_lokasi").text(jumlah_lokasi + "++");
+							}
+						
+
+						}, 1);
+						status_animasi_summary = "off";
+					}
+				}
+			});
+// 			jumlah_client
+// jumlah_proyek
+// jumlah_lokasi
+		});
+	</script>
 	
 </html>
