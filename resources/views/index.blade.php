@@ -111,6 +111,11 @@ nav.navbar.bootsnav ul.nav > li > a {
 /* .single-inner-populer-products{
 	padding: 0px !important;
 } */
+#button_hubungi_wa{
+		width:100% !important;
+		padding-left:10px;
+		padding-right:10px;
+	}
 
 
 @media (max-width: 576px) { 
@@ -123,7 +128,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 	}
 
 	#title_pg_wooden{
-		font-size:20px !important;
+		font-size:25px !important;
 	}
 	#button_pg_wooden{
 		font-size:12px !important;
@@ -175,6 +180,10 @@ nav.navbar.bootsnav ul.nav > li > a {
 	.caption_populer_product p{
 		font-size:12px !important;
 	}
+	.sofa-collection::before, .sofa-collection::after{
+		width:100% !important;
+	}
+	
 }
 
 
@@ -186,7 +195,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 		padding: 0px !important;
 	}
 	#title_pg_wooden{
-		font-size:20px !important;
+		font-size:25px !important;
 	}
 	#button_pg_wooden{
 		font-size:12px !important;
@@ -241,6 +250,9 @@ nav.navbar.bootsnav ul.nav > li > a {
 	}
 	.caption_populer_product p{
 		font-size:12px !important;
+	}
+	.sofa-collection::before, .sofa-collection::after{
+		width:100% !important;
 	}
  }
 
@@ -299,8 +311,9 @@ nav.navbar.bootsnav ul.nav > li > a {
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-txt" style = "text-align:center;">
 													<h1 id= "title_pg_wooden" style = "font-size:30px;color:white; text-shadow: 1px 1px #131312;opacity:0;transition:3s;">Welcome to PGD Wooden House</h1>
-													<button id= "button_pg_wooden" type="button" class="btn-cart welcome-add-cart" style = "opacity:0;">Create Furniture &nbsp;<i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i>
+													<a href = "#sofa-collection"><button id= "button_pg_wooden" type="button" class="btn-cart welcome-add-cart" style = "opacity:0;">Create Furniture &nbsp;<i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i>
 													</button>
+												</a>
 													{{-- <h4>PGD Wooden House</h4>
 													<h2>Furniture Terbaik !</h2>
 													<p>
@@ -519,8 +532,8 @@ nav.navbar.bootsnav ul.nav > li > a {
 				</div> --}}
 				<div class="portocontainer">
 					@foreach($portofolio as $p)
-					<div class="box">
-						<img src="{{asset('assets/images/portofolio_from_db/'.$p->img)}}">
+					<div class="box" >
+						<img src="{{asset('assets/images/portofolio_from_db/'.$p->img)}}" style = "height:100%;">
 			  
 					  </div>
 					@endforeach
@@ -539,7 +552,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 					<div class="row">
 						<div class = "col col-sm-4 col-md-4 col-xs-6 mt-5">
 							<div class="" style = "margin-top: 30px;">
-								<img src="assets/images/populer-products/p1.png" alt="populer-products images">
+								<img src="assets/images/populer-products/p1.png"  alt="populer-products images">
 							</div>
 							<h2><a href="#" style = "margin-top: 20px;">arm chair</a></h2>
 							<div class="caption_populer_product" style = "margin-top: 20px;">
@@ -807,8 +820,8 @@ nav.navbar.bootsnav ul.nav > li > a {
 								Kami mulai dengan mendengarkan ide dan harapan Anda. Tim ahli kami akan membantu merealisasikan desain yang sesuai dengan visi Anda.	Dengan menggunakan bahan berkualitas tinggi dan teknologi terkini, kami memastikan setiap produk yang kami buat memiliki daya tahan dan estetika yang luar biasa.						
 							</p>
 						
-							<a href = "#testimony"><button class="btn-cart welcome-add-cart sofa-collection-btn"  onclick="window.location.href='#'">
-								Lihat Testimony Client
+							<a  href = "https://wa.me/+6281328835401?text=Halo%20PGD%20Wooden%20House%20Furniture%2C%20Saya%20dapat%20ini%20dari%20website.%20Saya%20ingin%20tanya%20tanya%20tentang%20produk%20dan%20proyek%22nya%20ya"><button class="btn-cart welcome-add-cart sofa-collection-btn w-100" id = "button_hubungi_wa"  >
+								Hubungi Kami Via WA &nbsp;<img src = "{{asset('assets/logo/logo_wa.png')}}" style = "width:25px;height:25px;display:inline-block;"/>
 							</button></a>
 						</div>
 					</div>	
@@ -825,7 +838,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 				</div><!--/.section-header-->
 				<div class="feature-content">
 					<div class="row">
-						<div class="col-sm-3">
+						<div class = "col col-sm-4 col-md-3 col-xs-6 mt-5">
 							<div class="single-feature">
 								<img src="assets/images/features/f1.jpg" alt="feature image">
 								<div class="single-feature-txt text-center">
@@ -842,7 +855,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-3">
+						<div class = "col col-sm-4 col-md-3 col-xs-6 mt-5">
 							<div class="single-feature">
 								<img src="assets/images/features/f2.jpg" alt="feature image">
 								<div class="single-feature-txt text-center">
@@ -859,7 +872,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-3">
+						<div class = "col col-sm-4 col-md-3 col-xs-6 mt-5">
 							<div class="single-feature">
 								<img src="assets/images/features/f3.jpg" alt="feature image">
 								<div class="single-feature-txt text-center">
@@ -876,7 +889,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-3">
+						<div class = "col col-sm-4 col-md-3 col-xs-6 mt-5">
 							<div class="single-feature">
 								<img src="assets/images/features/f4.jpg" alt="feature image">
 								<div class="single-feature-txt text-center">
