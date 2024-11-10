@@ -160,6 +160,21 @@ nav.navbar.bootsnav ul.nav > li > a {
 	.desktoponly{
 		display: none !important;
 	}
+	.box > img{
+		height:300px;
+	}
+	.portocontainer{
+		height : 50vh;
+	}
+	#Portofolio{
+		padding:0px !important;
+	}
+	.populer-products{
+		padding-top:25px !important;
+	}
+	.caption_populer_product p{
+		font-size:12px !important;
+	}
 }
 
 
@@ -211,6 +226,21 @@ nav.navbar.bootsnav ul.nav > li > a {
 	}
 	.desktoponly{
 		display: none;
+	}
+	.box > img{
+		height:300px;
+	}
+	.portocontainer{
+		height : 50vh;
+	}
+	#Portofolio{
+		padding:0px !important;
+	}
+	.populer-products{
+		padding-top:45px !important;
+	}
+	.caption_populer_product p{
+		font-size:12px !important;
 	}
  }
 
@@ -499,15 +529,42 @@ nav.navbar.bootsnav ul.nav > li > a {
 		
 		</section>
 
-		<section id="populer-products" class="populer-products">
+		<section id="populer-products" class="populer-products" >
 			
 			<div class="container">
 				<div class="section-header">
 					<h2>Produk Unggulan Kami</h2>
 				</div>
-				<div class="populer-products-content">
+				<div class="populer-products-content" style = "margin-top:50px;text-align:center;" >
 					<div class="row">
-						<div class="col-md-4">
+						<div class = "col col-sm-4 col-md-4 col-xs-6 mt-5">
+							<div class="" style = "margin-top: 30px;">
+								<img src="assets/images/populer-products/p1.png" alt="populer-products images">
+							</div>
+							<h2><a href="#" style = "margin-top: 20px;">arm chair</a></h2>
+							<div class="caption_populer_product" style = "margin-top: 20px;">
+								<p>Nemo enim ipsam voluptatem quia volu ptas sit asperna aut odit aut fugit.</p>
+							</div>
+						</div>
+						<div class = "col col-sm-4 col-md-4 col-xs-6 mt-5">
+							<div class="" style = "margin-top: 30px;">
+								<img src="assets/images/populer-products/p1.png" alt="populer-products images">
+							</div>
+							<h2><a href="#" style = "margin-top: 20px;">arm chair</a></h2>
+							<div class="caption_populer_product" style = "margin-top: 20px;">
+								<p>Nemo enim ipsam voluptatem quia volu ptas sit asperna aut odit aut fugit.</p>
+							</div>
+						</div>
+						<div class = "col col-sm-4 col-md-4 col-xs-6 mt-5">
+							<div class="" style = "margin-top: 30px;">
+								<img src="assets/images/populer-products/p1.png" alt="populer-products images">
+							</div>
+							<h2><a href="#" style = "margin-top: 20px;">arm chair</a></h2>
+							<div class="caption_populer_product" style = "margin-top: 20px;">
+								<p>Nemo enim ipsam voluptatem quia volu ptas sit asperna aut odit aut fugit.</p>
+							</div>
+						</div>
+						{{-- <div class="col-md-4">
 							<div class="single-populer-products">
 								<div class="single-populer-product-img mt40">
 									<img src="assets/images/populer-products/p1.png" alt="populer-products images">
@@ -541,7 +598,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 			</div>
@@ -558,7 +615,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 				<div class="new-arrivals-content">
 					<div class="row">
 						@foreach($product as $pro)
-						<div class="col-md-3 col-sm-4">
+						<div class = "col col-sm-4 col-md-4 col-xs-6 mt-5">
 							<div class="single-new-arrival">
 								<div class="single-new-arrival-bg">
 									<img src="{{asset('assets/images/product_from_db/'.$pro->img)}}" alt="new-arrivals images">

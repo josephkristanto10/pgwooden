@@ -9,10 +9,10 @@
       rel="stylesheet">
 
   <!-- title of site -->
-  <title>Furniture</title>
+  <title>PGD Wooden House - Funiture Jepara</title>
 
   <!-- For favicon png -->
-  <link rel="shortcut icon" type="{{asset('image/icon')}}" href="assets/logo/favicon.png" />
+  <link rel="shortcut icon" type="{{asset('assets/logo/logo_pg_wooden.png')}}" href="{{asset('assets/logo/logo_pg_wooden.png')}}" />
 
   <!--font-awesome.min.css-->
   <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}">
