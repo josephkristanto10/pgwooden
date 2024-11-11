@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\BestSeller;
 use DataTables;
+use Session;
 
 class productController extends Controller
 {
@@ -13,15 +15,57 @@ class productController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $menu = "product";
-        return view("admin.pages.product", compact("menu"));
+    // main view
+    public function index_main(){
+        // $menu = "product";
+        $bestseller = BestSeller::join("product","product.id",'=','best_seller.id_product')->orderBy("order_number","asc")->get();
+        $product = Product::all();
+        return view("product", compact("product", "bestseller"));
     }
+    // admin
+    public function index() 
+    {
+        if(Session::has("superuser")){
+            $menu = "product";
+            return view("admin.pages.product", compact("menu"));           
+        }
+        else{
+            return redirect("/datacenter");
+        }
+    }
+      // index best seller admin
+      public function index_best_seller_admin() 
+      {
+        $best_seller = BestSeller::orderBy("order_number", "asc")->get();
+
+        $best_seller1 = $best_seller[0];
+        $best_seller2 = $best_seller[1];
+        $best_seller3 = $best_seller[2];
+
+         $all_product = Product::orderBy("id","desc")->get();
+          if(Session::has("superuser")){
+              $menu = "bestsellerproduct";
+              return view("admin.pages.bestsellerproduct", compact("menu","all_product","best_seller1","best_seller2","best_seller3"));           
+          }
+          else{
+              return redirect("/datacenter");
+          }
+      }
 
     public function see_table_all_product(){
         $data = Product::all();
         return DataTables::of($data)->make(true);
+    }
+    public function update_best_sellers(Request $request){
+        $data1 = $request->opsi1;
+        $data2 = $request->opsi2;
+        $data3 = $request->opsi3;
+        
+        $update_product = BestSeller::where("order_number","=",1)->update(["id_product" => $data1]);
+        $update_product = BestSeller::where("order_number","=",2)->update(["id_product" => $data2]);
+        $update_product = BestSeller::where("order_number","=",3)->update(["id_product" => $data3]);
+        
+        return response()->json(['status' => "200", 'message' => "ok"]);
     }
     public function upload_new_product(Request $request){
         $status = "";

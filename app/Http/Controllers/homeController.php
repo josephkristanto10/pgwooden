@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Portofolio;
 use App\Models\Product;
+use App\Models\BestSeller;
 
 class homeController extends Controller
 {
@@ -15,9 +16,10 @@ class homeController extends Controller
      */
     public function index()
     {
+        $bestseller = BestSeller::join("product","product.id",'=','best_seller.id_product')->orderBy("order_number","asc")->get();
         $portofolio = Portofolio::all();
         $product = Product::all();
-        return view("index",compact("portofolio","product"));
+        return view("index",compact("portofolio","product", "bestseller"));
     }
 
     /**

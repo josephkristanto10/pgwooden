@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 88,
             "patches": [
                 {
                     "date": 1731121579044,
@@ -24,6 +24,342 @@
                 {
                     "date": 1731122041010,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n      * @return \\Illuminate\\Http\\Response\n      */\n     public function index()\n     {\n-       return view();\n+       return view(\"admin.pages.signin\");\n     }\n \n     /**\n      * Show the form for creating a new resource.\n"
+                },
+                {
+                    "date": 1731314982775,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,12 @@\n     public function index()\n     {\n        return view(\"admin.pages.signin\");\n     }\n+    public function login_checks(Request $request){\n \n+    }\n+\n     /**\n      * Show the form for creating a new resource.\n      *\n      * @return \\Illuminate\\Http\\Response\n"
+                },
+                {
+                    "date": 1731314989133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n     {\n        return view(\"admin.pages.signin\");\n     }\n     public function login_checks(Request $request){\n+        \n \n     }\n \n     /**\n"
+                },
+                {
+                    "date": 1731315051817,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     {\n        return view(\"admin.pages.signin\");\n     }\n     public function login_checks(Request $request){\n-        \n+        $username = ;\n \n     }\n \n     /**\n"
+                },
+                {
+                    "date": 1731315065723,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     {\n        return view(\"admin.pages.signin\");\n     }\n     public function login_checks(Request $request){\n-        $username = ;\n+        $username = $request->username;\n \n     }\n \n     /**\n"
+                },
+                {
+                    "date": 1731315098388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,10 @@\n        return view(\"admin.pages.signin\");\n     }\n     public function login_checks(Request $request){\n         $username = $request->username;\n+        $password = $request->password;\n+        $encrypted = bcrypt( $password);\n \n     }\n \n     /**\n"
+                },
+                {
+                    "date": 1731315104944,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n     }\n     public function login_checks(Request $request){\n         $username = $request->username;\n         $password = $request->password;\n-        $encrypted = bcrypt( $password);\n+        // $encrypted = bcrypt($password);\n \n     }\n \n     /**\n"
+                },
+                {
+                    "date": 1731315127508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,9 @@\n     }\n     public function login_checks(Request $request){\n         $username = $request->username;\n         $password = $request->password;\n+        $usercheck = Login::select();\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731315144174,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n     }\n     public function login_checks(Request $request){\n         $username = $request->username;\n         $password = $request->password;\n-        $usercheck = Login::select();\n+        $usercheck = Login::where()->select(\"*\");\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731315155696,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n     }\n     public function login_checks(Request $request){\n         $username = $request->username;\n         $password = $request->password;\n-        $usercheck = Login::where()->select(\"*\");\n+        $usercheck = Login::where(\"user\", \"=\",$username)->select(\"*\");\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731315172688,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n     }\n     public function login_checks(Request $request){\n         $username = $request->username;\n         $password = $request->password;\n-        $usercheck = Login::where(\"user\", \"=\",$username)->select(\"*\");\n+        $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\");\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731315180179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n     }\n     public function login_checks(Request $request){\n         $username = $request->username;\n         $password = $request->password;\n-        $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\");\n+        $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731315196845,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,12 @@\n     public function login_checks(Request $request){\n         $username = $request->username;\n         $password = $request->password;\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n+        if($usercheck_fromdb){\n+            \n+        }\n+        $pass_fromdb = $usercheck_fromdb\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731315205450,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,11 +20,11 @@\n         $username = $request->username;\n         $password = $request->password;\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb){\n-            \n+            $pass_fromdb = $usercheck_fromdb;\n         }\n-        $pass_fromdb = $usercheck_fromdb\n+      \n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731315222541,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n         $password = $request->password;\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb){\n             $pass_fromdb = $usercheck_fromdb;\n+            return response()->json(['status' => $status, 'message' => $errormes]);\n         }\n       \n         // $encrypted = bcrypt($password);\n \n"
+                },
+                {
+                    "date": 1731315229415,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,100 @@\n+<?php\n+\n+namespace App\\Http\\Controllers;\n+\n+use Illuminate\\Http\\Request;\n+use App\\Models\\Login;\n+\n+class loginController extends Controller\n+{\n+    /**\n+     * Display a listing of the resource.\n+     *\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function index()\n+    {\n+       return view(\"admin.pages.signin\");\n+    }\n+    public function login_checks(Request $request){\n+        $username = $request->username;\n+        $password = $request->password;\n+        $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n+        if($usercheck_fromdb){\n+            $pass_fromdb = $usercheck_fromdb;\n+            \n+        }\n+        else{\n+            \n+        }\n+        return response()->json(['status' => $status, 'message' => $errormes]);\n+        // $encrypted = bcrypt($password);\n+\n+    }\n+\n+    /**\n+     * Show the form for creating a new resource.\n+     *\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function create()\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Store a newly created resource in storage.\n+     *\n+     * @param  \\Illuminate\\Http\\Request  $request\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function store(Request $request)\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Display the specified resource.\n+     *\n+     * @param  int  $id\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function show($id)\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Show the form for editing the specified resource.\n+     *\n+     * @param  int  $id\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function edit($id)\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Update the specified resource in storage.\n+     *\n+     * @param  \\Illuminate\\Http\\Request  $request\n+     * @param  int  $id\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function update(Request $request, $id)\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Remove the specified resource from storage.\n+     *\n+     * @param  int  $id\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function destroy($id)\n+    {\n+        //\n+    }\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1731315243525,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,9 @@\n     }\n     public function login_checks(Request $request){\n         $username = $request->username;\n         $password = $request->password;\n+        $status = \"500\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb){\n             $pass_fromdb = $usercheck_fromdb;\n             \n@@ -96,102 +97,5 @@\n     public function destroy($id)\n     {\n         //\n     }\n-}\n-<?php\n-\n-namespace App\\Http\\Controllers;\n-\n-use Illuminate\\Http\\Request;\n-use App\\Models\\Login;\n-\n-class loginController extends Controller\n-{\n-    /**\n-     * Display a listing of the resource.\n-     *\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function index()\n-    {\n-       return view(\"admin.pages.signin\");\n-    }\n-    public function login_checks(Request $request){\n-        $username = $request->username;\n-        $password = $request->password;\n-        $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-        if($usercheck_fromdb){\n-            $pass_fromdb = $usercheck_fromdb;\n-            return response()->json(['status' => $status, 'message' => $errormes]);\n-        }\n-      \n-        // $encrypted = bcrypt($password);\n-\n-    }\n-\n-    /**\n-     * Show the form for creating a new resource.\n-     *\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function create()\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Store a newly created resource in storage.\n-     *\n-     * @param  \\Illuminate\\Http\\Request  $request\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function store(Request $request)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Display the specified resource.\n-     *\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function show($id)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Show the form for editing the specified resource.\n-     *\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function edit($id)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Update the specified resource in storage.\n-     *\n-     * @param  \\Illuminate\\Http\\Request  $request\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function update(Request $request, $id)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Remove the specified resource from storage.\n-     *\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function destroy($id)\n-    {\n-        //\n-    }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1731315250536,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,13 +22,10 @@\n         $status = \"500\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb){\n             $pass_fromdb = $usercheck_fromdb;\n-            \n+            $status = \"200\";\n         }\n-        else{\n-            \n-        }\n         return response()->json(['status' => $status, 'message' => $errormes]);\n         // $encrypted = bcrypt($password);\n \n     }\n"
+                },
+                {
+                    "date": 1731315256766,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,9 @@\n     public function login_checks(Request $request){\n         $username = $request->username;\n         $password = $request->password;\n         $status = \"500\";\n+        $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb){\n             $pass_fromdb = $usercheck_fromdb;\n             $status = \"200\";\n"
+                },
+                {
+                    "date": 1731315264364,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb){\n             $pass_fromdb = $usercheck_fromdb;\n             $status = \"200\";\n+            $errormes = \"ok\";\n         }\n         return response()->json(['status' => $status, 'message' => $errormes]);\n         // $encrypted = bcrypt($password);\n \n"
+                },
+                {
+                    "date": 1731315626872,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n             $pass_fromdb = $usercheck_fromdb;\n             $status = \"200\";\n             $errormes = \"ok\";\n         }\n-        return response()->json(['status' => $status, 'message' => $errormes]);\n+        return response()->json(['status' => $status, 'message' => $usercheck_fromdb]);\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731315672963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n         $password = $request->password;\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-        if($usercheck_fromdb){\n+        if($usercheck_fromdb > 0){\n             $pass_fromdb = $usercheck_fromdb;\n             $status = \"200\";\n             $errormes = \"ok\";\n         }\n"
+                },
+                {
+                    "date": 1731315731915,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n         $password = $request->password;\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-        if($usercheck_fromdb > 0){\n+        if(!is_null($usercheck_fromdb)){\n             $pass_fromdb = $usercheck_fromdb;\n             $status = \"200\";\n             $errormes = \"ok\";\n         }\n"
+                },
+                {
+                    "date": 1731315750771,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n             $pass_fromdb = $usercheck_fromdb;\n             $status = \"200\";\n             $errormes = \"ok\";\n         }\n-        return response()->json(['status' => $status, 'message' => $usercheck_fromdb]);\n+        return response()->json(['status' => $status, 'message' => $username]);\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731315784710,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n         $password = $request->password;\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-        if(!is_null($usercheck_fromdb)){\n+        if(!is_empty($usercheck_fromdb)){\n             $pass_fromdb = $usercheck_fromdb;\n             $status = \"200\";\n             $errormes = \"ok\";\n         }\n"
+                },
+                {
+                    "date": 1731315813745,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n         $password = $request->password;\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-        if(!is_empty($usercheck_fromdb)){\n+        if(!count($patient)){\n             $pass_fromdb = $usercheck_fromdb;\n             $status = \"200\";\n             $errormes = \"ok\";\n         }\n"
+                },
+                {
+                    "date": 1731315847777,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n         $password = $request->password;\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-        if(!count($patient)){\n+        if(!empty($usercheck_fromdb)){\n             $pass_fromdb = $usercheck_fromdb;\n             $status = \"200\";\n             $errormes = \"ok\";\n         }\n"
+                },
+                {
+                    "date": 1731315925880,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,100 @@\n+<?php\n+\n+namespace App\\Http\\Controllers;\n+\n+use Illuminate\\Http\\Request;\n+use App\\Models\\Login;\n+\n+class loginController extends Controller\n+{\n+    /**\n+     * Display a listing of the resource.\n+     *\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function index()\n+    {\n+       return view(\"admin.pages.signin\");\n+    }\n+    public function login_checks(Request $request){\n+        $username = $request->username;\n+        $password = $request->password;\n+        $status = \"500\";\n+        $errormes = \"error\";\n+        $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n+        if(!empty($usercheck_fromdb)){\n+            $pass_fromdb = $usercheck_fromdb;\n+            $status = \"200\";\n+            $errormes = \"ok\";\n+        }\n+        return response()->json(['status' => $status, 'message' => $username]);\n+        // $encrypted = bcrypt($password);\n+\n+    }\n+\n+    /**\n+     * Show the form for creating a new resource.\n+     *\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function create()\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Store a newly created resource in storage.\n+     *\n+     * @param  \\Illuminate\\Http\\Request  $request\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function store(Request $request)\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Display the specified resource.\n+     *\n+     * @param  int  $id\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function show($id)\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Show the form for editing the specified resource.\n+     *\n+     * @param  int  $id\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function edit($id)\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Update the specified resource in storage.\n+     *\n+     * @param  \\Illuminate\\Http\\Request  $request\n+     * @param  int  $id\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function update(Request $request, $id)\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Remove the specified resource from storage.\n+     *\n+     * @param  int  $id\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function destroy($id)\n+    {\n+        //\n+    }\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1731315926057,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -96,105 +96,5 @@\n     public function destroy($id)\n     {\n         //\n     }\n-}\n-<?php\n-\n-namespace App\\Http\\Controllers;\n-\n-use Illuminate\\Http\\Request;\n-use App\\Models\\Login;\n-\n-class loginController extends Controller\n-{\n-    /**\n-     * Display a listing of the resource.\n-     *\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function index()\n-    {\n-       return view(\"admin.pages.signin\");\n-    }\n-    public function login_checks(Request $request){\n-        $username = $request->username;\n-        $password = $request->password;\n-        $status = \"500\";\n-        $errormes = \"error\";\n-        $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-        if(!empty($usercheck_fromdb)){\n-            $pass_fromdb = $usercheck_fromdb;\n-            $status = \"200\";\n-            $errormes = \"ok\";\n-        }\n-        return response()->json(['status' => $status, 'message' => $username]);\n-        // $encrypted = bcrypt($password);\n-\n-    }\n-\n-    /**\n-     * Show the form for creating a new resource.\n-     *\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function create()\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Store a newly created resource in storage.\n-     *\n-     * @param  \\Illuminate\\Http\\Request  $request\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function store(Request $request)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Display the specified resource.\n-     *\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function show($id)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Show the form for editing the specified resource.\n-     *\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function edit($id)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Update the specified resource in storage.\n-     *\n-     * @param  \\Illuminate\\Http\\Request  $request\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function update(Request $request, $id)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Remove the specified resource from storage.\n-     *\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function destroy($id)\n-    {\n-        //\n-    }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1731315932192,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n         $username = $request->username;\n         $password = $request->password;\n         $status = \"500\";\n         $errormes = \"error\";\n-        $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n+        $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->count();\n         if(!empty($usercheck_fromdb)){\n             $pass_fromdb = $usercheck_fromdb;\n             $status = \"200\";\n             $errormes = \"ok\";\n"
+                },
+                {
+                    "date": 1731315963521,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n             $pass_fromdb = $usercheck_fromdb;\n             $status = \"200\";\n             $errormes = \"ok\";\n         }\n-        return response()->json(['status' => $status, 'message' => $username]);\n+        return response()->json(['status' => $status, 'message' => $usercheck_fromdb]);\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731315970996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n         $password = $request->password;\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->count();\n-        if(!empty($usercheck_fromdb)){\n+        if($usercheck_fromdb){\n             $pass_fromdb = $usercheck_fromdb;\n             $status = \"200\";\n             $errormes = \"ok\";\n         }\n"
+                },
+                {
+                    "date": 1731316047189,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,10 +20,10 @@\n         $username = $request->username;\n         $password = $request->password;\n         $status = \"500\";\n         $errormes = \"error\";\n-        $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->count();\n-        if($usercheck_fromdb){\n+        $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n+        if($usercheck_fromdb->count()){\n             $pass_fromdb = $usercheck_fromdb;\n             $status = \"200\";\n             $errormes = \"ok\";\n         }\n"
+                },
+                {
+                    "date": 1731316054907,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n         $password = $request->password;\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-        if($usercheck_fromdb->count()){\n+        if($usercheck_fromdb->count()> 0){\n             $pass_fromdb = $usercheck_fromdb;\n             $status = \"200\";\n             $errormes = \"ok\";\n         }\n"
+                },
+                {
+                    "date": 1731316101278,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb->count()> 0){\n-            $pass_fromdb = $usercheck_fromdb;\n+            $pass_fromdb = $usercheck_fromdb['password'];\n             $status = \"200\";\n             $errormes = \"ok\";\n         }\n         return response()->json(['status' => $status, 'message' => $usercheck_fromdb]);\n"
+                },
+                {
+                    "date": 1731316216381,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,11 @@\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb->count()> 0){\n             $pass_fromdb = $usercheck_fromdb['password'];\n+            if (Hash::check('plain-text-password', $hashedPassword)) {\n+                // The passwords match...\n+            }\n             $status = \"200\";\n             $errormes = \"ok\";\n         }\n         return response()->json(['status' => $status, 'message' => $usercheck_fromdb]);\n"
+                },
+                {
+                    "date": 1731316223821,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb->count()> 0){\n             $pass_fromdb = $usercheck_fromdb['password'];\n-            if (Hash::check('plain-text-password', $hashedPassword)) {\n+            if (Hash::check($password, $hashedPassword)) {\n                 // The passwords match...\n             }\n             $status = \"200\";\n             $errormes = \"ok\";\n"
+                },
+                {
+                    "date": 1731316229976,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,14 +22,15 @@\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb->count()> 0){\n-            $pass_fromdb = $usercheck_fromdb['password'];\n+            // $pass_fromdb = $usercheck_fromdb['password'];\n             if (Hash::check($password, $hashedPassword)) {\n                 // The passwords match...\n+                $status = \"200\";\n+                $errormes = \"ok\";\n             }\n-            $status = \"200\";\n-            $errormes = \"ok\";\n+        \n         }\n         return response()->json(['status' => $status, 'message' => $usercheck_fromdb]);\n         // $encrypted = bcrypt($password);\n \n"
+                },
+                {
+                    "date": 1731316236597,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,12 @@\n                 // The passwords match...\n                 $status = \"200\";\n                 $errormes = \"ok\";\n             }\n+            else{\n+                $status = \"500\";\n+                $errormes = \"error\";\n+            }\n         \n         }\n         return response()->json(['status' => $status, 'message' => $usercheck_fromdb]);\n         // $encrypted = bcrypt($password);\n"
+                },
+                {
+                    "date": 1731316642436,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n namespace App\\Http\\Controllers;\n \n use Illuminate\\Http\\Request;\n use App\\Models\\Login;\n+use Hash;\n \n class loginController extends Controller\n {\n     /**\n"
+                },
+                {
+                    "date": 1731316667086,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,109 @@\n+<?php\n+\n+namespace App\\Http\\Controllers;\n+\n+use Illuminate\\Http\\Request;\n+use App\\Models\\Login;\n+use Hash;\n+\n+class loginController extends Controller\n+{\n+    /**\n+     * Display a listing of the resource.\n+     *\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function index()\n+    {\n+       return view(\"admin.pages.signin\");\n+    }\n+    public function login_checks(Request $request){\n+        $username = $request->username;\n+        $password = $request->password;\n+        $status = \"500\";\n+        $errormes = \"error\";\n+        $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n+        if($usercheck_fromdb->count()> 0){\n+            // $pass_fromdb = $usercheck_fromdb['password'];\n+            if (Hash::check($password, $usercheck_fromdb)) {\n+                // The passwords match...\n+                $status = \"200\";\n+                $errormes = \"ok\";\n+            }\n+            else{\n+                $status = \"500\";\n+                $errormes = \"error\";\n+            }\n+        \n+        }\n+        return response()->json(['status' => $status, 'message' => $usercheck_fromdb]);\n+        // $encrypted = bcrypt($password);\n+\n+    }\n+\n+    /**\n+     * Show the form for creating a new resource.\n+     *\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function create()\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Store a newly created resource in storage.\n+     *\n+     * @param  \\Illuminate\\Http\\Request  $request\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function store(Request $request)\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Display the specified resource.\n+     *\n+     * @param  int  $id\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function show($id)\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Show the form for editing the specified resource.\n+     *\n+     * @param  int  $id\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function edit($id)\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Update the specified resource in storage.\n+     *\n+     * @param  \\Illuminate\\Http\\Request  $request\n+     * @param  int  $id\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function update(Request $request, $id)\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Remove the specified resource from storage.\n+     *\n+     * @param  int  $id\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function destroy($id)\n+    {\n+        //\n+    }\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1731316688236,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb->count()> 0){\n             // $pass_fromdb = $usercheck_fromdb['password'];\n-            if (Hash::check($password, $usercheck_fromdb)) {\n+            if (Hash::check($password, $usercheck_fromdb['password'])) {\n                 // The passwords match...\n                 $status = \"200\";\n                 $errormes = \"ok\";\n             }\n@@ -105,114 +105,5 @@\n     public function destroy($id)\n     {\n         //\n     }\n-}\n-<?php\n-\n-namespace App\\Http\\Controllers;\n-\n-use Illuminate\\Http\\Request;\n-use App\\Models\\Login;\n-use Hash;\n-\n-class loginController extends Controller\n-{\n-    /**\n-     * Display a listing of the resource.\n-     *\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function index()\n-    {\n-       return view(\"admin.pages.signin\");\n-    }\n-    public function login_checks(Request $request){\n-        $username = $request->username;\n-        $password = $request->password;\n-        $status = \"500\";\n-        $errormes = \"error\";\n-        $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-        if($usercheck_fromdb->count()> 0){\n-            // $pass_fromdb = $usercheck_fromdb['password'];\n-            if (Hash::check($password, $hashedPassword)) {\n-                // The passwords match...\n-                $status = \"200\";\n-                $errormes = \"ok\";\n-            }\n-            else{\n-                $status = \"500\";\n-                $errormes = \"error\";\n-            }\n-        \n-        }\n-        return response()->json(['status' => $status, 'message' => $usercheck_fromdb]);\n-        // $encrypted = bcrypt($password);\n-\n-    }\n-\n-    /**\n-     * Show the form for creating a new resource.\n-     *\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function create()\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Store a newly created resource in storage.\n-     *\n-     * @param  \\Illuminate\\Http\\Request  $request\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function store(Request $request)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Display the specified resource.\n-     *\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function show($id)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Show the form for editing the specified resource.\n-     *\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function edit($id)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Update the specified resource in storage.\n-     *\n-     * @param  \\Illuminate\\Http\\Request  $request\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function update(Request $request, $id)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Remove the specified resource from storage.\n-     *\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function destroy($id)\n-    {\n-        //\n-    }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1731316702676,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb->count()> 0){\n             // $pass_fromdb = $usercheck_fromdb['password'];\n-            if (Hash::check($password, $usercheck_fromdb['password'])) {\n+            if (Hash::check($password, $usercheck_fromdb[0]['password'])) {\n                 // The passwords match...\n                 $status = \"200\";\n                 $errormes = \"ok\";\n             }\n"
+                },
+                {
+                    "date": 1731316750943,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n                 $errormes = \"error\";\n             }\n         \n         }\n-        return response()->json(['status' => $status, 'message' => $usercheck_fromdb]);\n+        return response()->json(['status' => $status, 'message' => $$usercheck_fromdb[0]['password']]);\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731316837716,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,8 @@\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb->count()> 0){\n-            // $pass_fromdb = $usercheck_fromdb['password'];\n             if (Hash::check($password, $usercheck_fromdb[0]['password'])) {\n                 // The passwords match...\n                 $status = \"200\";\n                 $errormes = \"ok\";\n@@ -35,9 +34,9 @@\n                 $errormes = \"error\";\n             }\n         \n         }\n-        return response()->json(['status' => $status, 'message' => $$usercheck_fromdb[0]['password']]);\n+        return response()->json(['status' => $status, 'message' => Hash::check($password, $usercheck_fromdb[0]['password']));\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731316850116,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n                 $errormes = \"error\";\n             }\n         \n         }\n-        return response()->json(['status' => $status, 'message' => Hash::check($password, $usercheck_fromdb[0]['password']));\n+        return response()->json(['status' => $status, 'message' => Hash::check($password, $usercheck_fromdb[0]['password'])];\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731316971947,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n                 $errormes = \"error\";\n             }\n         \n         }\n-        return response()->json(['status' => $status, 'message' => Hash::check($password, $usercheck_fromdb[0]['password'])];\n+        return response()->json(['status' => $status, password);\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731316984654,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n                 $errormes = \"error\";\n             }\n         \n         }\n-        return response()->json(['status' => $status, password);\n+        return response()->json(['status' => $status, 'message' =>$password);\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731316990894,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n                 $errormes = \"error\";\n             }\n         \n         }\n-        return response()->json(['status' => $status, 'message' =>$password);\n+        return response()->json(['status' => $status, 'message' =>$password]);\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731317087572,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n                 $errormes = \"error\";\n             }\n         \n         }\n-        return response()->json(['status' => $status, 'message' =>$password]);\n+        return response()->json(['status' => $status, 'message' =>usercheck_fromdb]);\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731317101836,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n                 $errormes = \"error\";\n             }\n         \n         }\n-        return response()->json(['status' => $status, 'message' =>usercheck_fromdb]);\n+        return response()->json(['status' => $status, 'message' =>$usercheck_fromdb]);\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731317114353,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,8 @@\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb->count()> 0){\n             if (Hash::check($password, $usercheck_fromdb[0]['password'])) {\n-                // The passwords match...\n                 $status = \"200\";\n                 $errormes = \"ok\";\n             }\n             else{\n"
+                },
+                {
+                    "date": 1731317229448,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n        return view(\"admin.pages.signin\");\n     }\n     public function login_checks(Request $request){\n         $username = $request->username;\n-        $password = $request->password;\n+        $password = bcrypt($request->password);\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb->count()> 0){\n"
+                },
+                {
+                    "date": 1731317289197,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n        return view(\"admin.pages.signin\");\n     }\n     public function login_checks(Request $request){\n         $username = $request->username;\n-        $password = bcrypt($request->password);\n+        $password = $request->password;\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb->count()> 0){\n"
+                },
+                {
+                    "date": 1731317343438,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb->count()> 0){\n-            if (Hash::check($password, $usercheck_fromdb[0]['password'])) {\n+            if (Hash::check($password, bcrypt($usercheck_fromdb[0]['password']))) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n             }\n             else{\n"
+                },
+                {
+                    "date": 1731317368433,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb->count()> 0){\n-            if (Hash::check($password, bcrypt($usercheck_fromdb[0]['password']))) {\n+            if (Hash::check($password, $usercheck_fromdb[0]['password'])) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n             }\n             else{\n"
+                },
+                {
+                    "date": 1731317395037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,9 @@\n     }\n     public function login_checks(Request $request){\n         $username = $request->username;\n         $password = $request->password;\n+        $encrypted = bcrypt($request->password);\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb->count()> 0){\n"
+                },
+                {
+                    "date": 1731317404149,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n         if($usercheck_fromdb->count()> 0){\n-            if (Hash::check($password, $usercheck_fromdb[0]['password'])) {\n+            if (Hash::check($password, $encrypted)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n             }\n             else{\n"
+                },
+                {
+                    "date": 1731317437963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,9 @@\n         $encrypted = bcrypt($request->password);\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n+        $encrypted = bcrypt($request->password);\n         if($usercheck_fromdb->count()> 0){\n             if (Hash::check($password, $encrypted)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n"
+                },
+                {
+                    "date": 1731317443708,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,13 +19,13 @@\n     }\n     public function login_checks(Request $request){\n         $username = $request->username;\n         $password = $request->password;\n-        $encrypted = bcrypt($request->password);\n+        // $encrypted = bcrypt($request->password);\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-        $encrypted = bcrypt($request->password);\n+        $encrypted = bcrypt($request->usercheck_fromdb[0]);\n         if($usercheck_fromdb->count()> 0){\n             if (Hash::check($password, $encrypted)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n"
+                },
+                {
+                    "date": 1731317470255,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,10 +23,11 @@\n         // $encrypted = bcrypt($request->password);\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-        $encrypted = bcrypt($request->usercheck_fromdb[0]);\n+    \n         if($usercheck_fromdb->count()> 0){\n+            $encrypted = bcrypt($request->usercheck_fromdb[0]['password']);\n             if (Hash::check($password, $encrypted)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n             }\n"
+                },
+                {
+                    "date": 1731317501379,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n     \n         if($usercheck_fromdb->count()> 0){\n-            $encrypted = bcrypt($request->usercheck_fromdb[0]['password']);\n+            $encrypted = bcrypt($usercheck_fromdb[0]['password']);\n             if (Hash::check($password, $encrypted)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n             }\n"
+                },
+                {
+                    "date": 1731318324762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n     \n         if($usercheck_fromdb->count()> 0){\n-            $encrypted = bcrypt($usercheck_fromdb[0]['password']);\n+            $encrypted = bcrypt($usercheck_fromdb[0]->password);\n             if (Hash::check($password, $encrypted)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n             }\n"
+                },
+                {
+                    "date": 1731318342343,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,10 +25,10 @@\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n     \n         if($usercheck_fromdb->count()> 0){\n-            $encrypted = bcrypt($usercheck_fromdb[0]->password);\n-            if (Hash::check($password, $encrypted)) {\n+            $encrypted = bcrypt();\n+            if (Hash::check($password, $usercheck_fromdb[0]->password)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n             }\n             else{\n"
+                },
+                {
+                    "date": 1731318349263,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,11 +23,9 @@\n         // $encrypted = bcrypt($request->password);\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-    \n         if($usercheck_fromdb->count()> 0){\n-            $encrypted = bcrypt();\n             if (Hash::check($password, $usercheck_fromdb[0]->password)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n             }\n"
+                },
+                {
+                    "date": 1731318600812,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n                 $errormes = \"error\";\n             }\n         \n         }\n-        return response()->json(['status' => $status, 'message' =>$usercheck_fromdb]);\n+        return response()->json(['status' => $status, 'message' =>$$usercheck_fromdb[0]->password]);\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731318643133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n        return view(\"admin.pages.signin\");\n     }\n     public function login_checks(Request $request){\n         $username = $request->username;\n-        $password = $request->password;\n+        $password = $request->pwd;\n         // $encrypted = bcrypt($request->password);\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n@@ -34,9 +34,9 @@\n                 $errormes = \"error\";\n             }\n         \n         }\n-        return response()->json(['status' => $status, 'message' =>$$usercheck_fromdb[0]->password]);\n+        return response()->json(['status' => $status, 'message' =>$usercheck_fromdb[0]->password]);\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731330217781,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n \n use Illuminate\\Http\\Request;\n use App\\Models\\Login;\n use Hash;\n+use Session;\n \n class loginController extends Controller\n {\n     /**\n@@ -27,8 +28,9 @@\n         if($usercheck_fromdb->count()> 0){\n             if (Hash::check($password, $usercheck_fromdb[0]->password)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n+                \n             }\n             else{\n                 $status = \"500\";\n                 $errormes = \"error\";\n"
+                },
+                {
+                    "date": 1731330223351,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,9 @@\n         if($usercheck_fromdb->count()> 0){\n             if (Hash::check($password, $usercheck_fromdb[0]->password)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n+                Session::flush();\n                 \n             }\n             else{\n                 $status = \"500\";\n"
+                },
+                {
+                    "date": 1731330242665,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,8 +29,9 @@\n             if (Hash::check($password, $usercheck_fromdb[0]->password)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n                 Session::flush();\n+                Session::put('variableName', $value);\n                 \n             }\n             else{\n                 $status = \"500\";\n"
+                },
+                {
+                    "date": 1731330249240,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n             if (Hash::check($password, $usercheck_fromdb[0]->password)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n                 Session::flush();\n-                Session::put('variableName', $value);\n+                Session::put('superuser', $value);\n                 \n             }\n             else{\n                 $status = \"500\";\n"
+                },
+                {
+                    "date": 1731330258191,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n             if (Hash::check($password, $usercheck_fromdb[0]->password)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n                 Session::flush();\n-                Session::put('superuser', $value);\n+                Session::put('superuser', \"yes\");\n                 \n             }\n             else{\n                 $status = \"500\";\n"
+                },
+                {
+                    "date": 1731330562524,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         // $encrypted = bcrypt($request->password);\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-        if($usercheck_fromdb->count()> 0){\n+        if($usercheck_fromdb === null){\n             if (Hash::check($password, $usercheck_fromdb[0]->password)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n                 Session::flush();\n"
+                },
+                {
+                    "date": 1731330657967,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         // $encrypted = bcrypt($request->password);\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-        if($usercheck_fromdb === null){\n+        if($usercheck_fromdb->exists()){\n             if (Hash::check($password, $usercheck_fromdb[0]->password)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n                 Session::flush();\n"
+                },
+                {
+                    "date": 1731330712801,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         // $encrypted = bcrypt($request->password);\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-        if($usercheck_fromdb->exists()){\n+        if(count($usercheck_fromdb)){\n             if (Hash::check($password, $usercheck_fromdb[0]->password)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n                 Session::flush();\n"
+                },
+                {
+                    "date": 1731330721938,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         // $encrypted = bcrypt($request->password);\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-        if(count($usercheck_fromdb)){\n+        if(count($usercheck_fromdb) > 0){\n             if (Hash::check($password, $usercheck_fromdb[0]->password)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n                 Session::flush();\n"
+                },
+                {
+                    "date": 1731330741632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         // $encrypted = bcrypt($request->password);\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-        if(count($usercheck_fromdb) > 0){\n+        if($usercheck_fromdb == \"\"){\n             if (Hash::check($password, $usercheck_fromdb[0]->password)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n                 Session::flush();\n"
+                },
+                {
+                    "date": 1731330752994,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         // $encrypted = bcrypt($request->password);\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-        if($usercheck_fromdb == \"\"){\n+        if($usercheck_fromdb == []){\n             if (Hash::check($password, $usercheck_fromdb[0]->password)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n                 Session::flush();\n"
+                },
+                {
+                    "date": 1731330802345,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,10 +23,10 @@\n         $password = $request->pwd;\n         // $encrypted = bcrypt($request->password);\n         $status = \"500\";\n         $errormes = \"error\";\n-        $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->get();\n-        if($usercheck_fromdb == []){\n+        $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->first();\n+        if($usercheck_fromdb){\n             if (Hash::check($password, $usercheck_fromdb[0]->password)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n                 Session::flush();\n"
+                },
+                {
+                    "date": 1731330826931,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n                 $errormes = \"error\";\n             }\n         \n         }\n-        return response()->json(['status' => $status, 'message' =>$usercheck_fromdb[0]->password]);\n+        return response()->json(['status' => $status, 'message' => \"test\"]);\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731330834136,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n                 $errormes = \"error\";\n             }\n         \n         }\n-        return response()->json(['status' => $status, 'message' => \"test\"]);\n+        return response()->json(['status' => $status, 'message' => $errormes]);\n         // $encrypted = bcrypt($password);\n \n     }\n \n"
+                },
+                {
+                    "date": 1731330954602,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n         $status = \"500\";\n         $errormes = \"error\";\n         $usercheck_fromdb = Login::where(\"user\", \"=\",$username)->select(\"*\")->first();\n         if($usercheck_fromdb){\n-            if (Hash::check($password, $usercheck_fromdb[0]->password)) {\n+            if (Hash::check($password, $usercheck_fromdb->password)) {\n                 $status = \"200\";\n                 $errormes = \"ok\";\n                 Session::flush();\n                 Session::put('superuser', \"yes\");\n"
+                },
+                {
+                    "date": 1731331614081,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,9 @@\n     {\n        return view(\"admin.pages.signin\");\n     }\n     public function login_checks(Request $request){\n+        Session::flush();\n         $username = $request->username;\n         $password = $request->pwd;\n         // $encrypted = bcrypt($request->password);\n         $status = \"500\";\n"
+                },
+                {
+                    "date": 1731331658798,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,12 +15,13 @@\n      * @return \\Illuminate\\Http\\Response\n      */\n     public function index()\n     {\n+    Session::flush();\n        return view(\"admin.pages.signin\");\n     }\n     public function login_checks(Request $request){\n-        Session::flush();\n+        \n         $username = $request->username;\n         $password = $request->pwd;\n         // $encrypted = bcrypt($request->password);\n         $status = \"500\";\n"
+                },
+                {
+                    "date": 1731332032261,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n      * @return \\Illuminate\\Http\\Response\n      */\n     public function index()\n     {\n-    Session::flush();\n+    //    Session::flush();\n        return view(\"admin.pages.signin\");\n     }\n     public function login_checks(Request $request){\n         \n"
                 }
             ],
             "date": 1731121579044,

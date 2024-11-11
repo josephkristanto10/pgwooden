@@ -522,27 +522,45 @@ nav.navbar.bootsnav ul.nav > li > a {
 		
 		</section>
 
-		<section id="Portofolio" class="new-arrivals" style = "padding: 35px 0 70px;">
+		
+
+		<section id="Portofolio" class="new-arrivals" style = "padding: 25px 0 20px;">
 			<div class="container">
 				<div class="section-header">
 					<h2>Portofolio Terbaik Kami</h2>
 				</div><!--/.section-header-->
-				{{-- <div class="new-arrivals-content">
-				
-				</div> --}}
-				<div class="portocontainer">
-					@foreach($portofolio as $p)
-					<div class="box" >
-						<img src="{{asset('assets/images/portofolio_from_db/'.$p->img)}}" style = "height:100%;">
-			  
-					  </div>
-					@endforeach
-				  </div>
+				<div class="new-arrivals-content">
+					<div class="row">
+						@foreach($portofolio as $por)
+						<div class = "col col-sm-4 col-md-4 col-xs-6 mt-5">
+							<div class="single-new-arrival">
+								<a href = "https://wa.me/+6281328835401?text=Halo%20PGD%20Wooden%20House%20Furniture%2C%20Saya%20dapat%20ini%20dari%20website.%20Saya%20ingin%20tanya%20tanya%20tentang%20portofolio%20dengan%20id%20{{$por->id}}%20dan%20portofolio%22nya%20ya">
+									<div class="single-new-arrival-bg">
+									<img src="{{asset('assets/images/portofolio_from_db/'.$por->img)}}" style = "height:300px;" alt="new-arrivals images">
+									<div class="single-new-arrival-bg-overlay"></div>
+									<div class="sale bg-1">
+										<p>sale</p>
+									</div>
+									<div class="new-arrival-cart">
+										<p>
+											<span class="lnr lnr-cart"></span>
+								<a href = "https://wa.me/+6281328835401?text=Halo%20PGD%20Wooden%20House%20Furniture%2C%20Saya%20dapat%20ini%20dari%20website.%20Saya%20ingin%20tanya%20tanya%20tentang%20portofolio%20dengan%20id%20{{$por->id}}%20dan%20portofolio%22nya%20ya">Contact Whatsapp</a>
+											</p>
+									</div>
+								</div>
+								</a>
+								{{-- <h4><a href="#">{{$pro->name}}</a></h4>
+								<p class="arrival-product-price">{{$pro->price}}</p> --}}
+							</div>
+						</div>
+						@endforeach
+	
+					</div>
+				</div>
 			</div><!--/.container-->
-		
 		</section>
 
-		<section id="populer-products" class="populer-products" >
+		<section id="populer-products" class="populer-products" style = "padding-top:20px;" >
 			
 			<div class="container">
 				<div class="section-header">
@@ -550,33 +568,18 @@ nav.navbar.bootsnav ul.nav > li > a {
 				</div>
 				<div class="populer-products-content" style = "margin-top:50px;text-align:center;" >
 					<div class="row">
+						@foreach($bestseller as $bs)
 						<div class = "col col-sm-4 col-md-4 col-xs-6 mt-5">
 							<div class="" style = "margin-top: 30px;">
-								<img src="assets/images/populer-products/p1.png"  alt="populer-products images">
+								<img src="{{asset('assets/images/product_from_db/'.$bs->img.'')}}" style = "height:300px;"  alt="populer-products images">
 							</div>
-							<h2><a href="#" style = "margin-top: 20px;">arm chair</a></h2>
+							<h2><a href="https://wa.me/+6281328835401?text=Halo%20PGD%20Wooden%20House%20Furniture%2C%20Saya%20dapat%20ini%20dari%20website.%20Saya%20ingin%20tanya%20tanya%20tentang%20produknya%20dengan%20id%20{{$bs->id}}%20dan%20portofolio%22nya%20ya" style = "margin-top: 20px;">{{$bs->name}}</a></h2>
 							<div class="caption_populer_product" style = "margin-top: 20px;">
-								<p>Nemo enim ipsam voluptatem quia volu ptas sit asperna aut odit aut fugit.</p>
+								<p>{{$bs->description}}.</p>
 							</div>
 						</div>
-						<div class = "col col-sm-4 col-md-4 col-xs-6 mt-5">
-							<div class="" style = "margin-top: 30px;">
-								<img src="assets/images/populer-products/p1.png" alt="populer-products images">
-							</div>
-							<h2><a href="#" style = "margin-top: 20px;">arm chair</a></h2>
-							<div class="caption_populer_product" style = "margin-top: 20px;">
-								<p>Nemo enim ipsam voluptatem quia volu ptas sit asperna aut odit aut fugit.</p>
-							</div>
-						</div>
-						<div class = "col col-sm-4 col-md-4 col-xs-6 mt-5">
-							<div class="" style = "margin-top: 30px;">
-								<img src="assets/images/populer-products/p1.png" alt="populer-products images">
-							</div>
-							<h2><a href="#" style = "margin-top: 20px;">arm chair</a></h2>
-							<div class="caption_populer_product" style = "margin-top: 20px;">
-								<p>Nemo enim ipsam voluptatem quia volu ptas sit asperna aut odit aut fugit.</p>
-							</div>
-						</div>
+						@endforeach
+						
 						{{-- <div class="col-md-4">
 							<div class="single-populer-products">
 								<div class="single-populer-product-img mt40">
@@ -639,12 +642,12 @@ nav.navbar.bootsnav ul.nav > li > a {
 									<div class="new-arrival-cart">
 										<p>
 											<span class="lnr lnr-cart"></span>
-											<a href="#">add <span>to </span> cart</a>
+											<a href="#">Contact Whatsapp </a>
 										</p>
-										<p class="arrival-review pull-right">
+										{{-- <p class="arrival-review pull-right">
 											<span class="lnr lnr-heart"></span>
 											<span class="lnr lnr-frame-expand"></span>
-										</p>
+										</p> --}}
 									</div>
 								</div>
 								<h4><a href="#">{{$pro->name}}</a></h4>
@@ -814,7 +817,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 			<div class="owl-carousel owl-theme" id="collection-carousel">
 				<div class="sofa-collection collectionbg1">
 					<div class="container">
-						<div class="sofa-collection-txt">
+						<div class="sofa-collection-txt" style = "text-align:justify;">
 							<h2>Pelayanan Terbaik !</h2>
 							<p>
 								Kami mulai dengan mendengarkan ide dan harapan Anda. Tim ahli kami akan membantu merealisasikan desain yang sesuai dengan visi Anda.	Dengan menggunakan bahan berkualitas tinggi dan teknologi terkini, kami memastikan setiap produk yang kami buat memiliki daya tahan dan estetika yang luar biasa.						

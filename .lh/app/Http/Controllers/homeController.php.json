@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 7,
+            "activePatchIndex": 15,
             "patches": [
                 {
                     "date": 1731119479555,
@@ -36,6 +36,38 @@
                 {
                     "date": 1731120546196,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     public function index()\n     {\n         $portofolio = Portofolio::all();\n         $product = Product::all();\n-        return view(\"index\",compact(\"portofolio\"));\n+        return view(\"index\",compact(\"portofolio\",\"product\"));\n     }\n \n     /**\n      * Show the form for creating a new resource.\n"
+                },
+                {
+                    "date": 1731338863081,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n \n use Illuminate\\Http\\Request;\n use App\\Models\\Portofolio;\n use App\\Models\\Product;\n+use App\\Models\\Product;\n \n class homeController extends Controller\n {\n     /**\n@@ -14,8 +15,9 @@\n      * @return \\Illuminate\\Http\\Response\n      */\n     public function index()\n     {\n+        $bestseller = Best\n         $portofolio = Portofolio::all();\n         $product = Product::all();\n         return view(\"index\",compact(\"portofolio\",\"product\"));\n     }\n"
+                },
+                {
+                    "date": 1731338869331,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \n use Illuminate\\Http\\Request;\n use App\\Models\\Portofolio;\n use App\\Models\\Product;\n-use App\\Models\\Product;\n+use App\\Models\\BestSeller;\n \n class homeController extends Controller\n {\n     /**\n@@ -15,9 +15,9 @@\n      * @return \\Illuminate\\Http\\Response\n      */\n     public function index()\n     {\n-        $bestseller = Best\n+        $bestseller = BestSeller\n         $portofolio = Portofolio::all();\n         $product = Product::all();\n         return view(\"index\",compact(\"portofolio\",\"product\"));\n     }\n"
+                },
+                {
+                    "date": 1731338880522,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n      * @return \\Illuminate\\Http\\Response\n      */\n     public function index()\n     {\n-        $bestseller = BestSeller\n+        $bestseller = BestSeller::orderBy();\n         $portofolio = Portofolio::all();\n         $product = Product::all();\n         return view(\"index\",compact(\"portofolio\",\"product\"));\n     }\n"
+                },
+                {
+                    "date": 1731338886820,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n      * @return \\Illuminate\\Http\\Response\n      */\n     public function index()\n     {\n-        $bestseller = BestSeller::orderBy();\n+        $bestseller = BestSeller::orderBy(\"order_number\",\"desc\");\n         $portofolio = Portofolio::all();\n         $product = Product::all();\n         return view(\"index\",compact(\"portofolio\",\"product\"));\n     }\n"
+                },
+                {
+                    "date": 1731338895713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n      * @return \\Illuminate\\Http\\Response\n      */\n     public function index()\n     {\n-        $bestseller = BestSeller::orderBy(\"order_number\",\"desc\");\n+        $bestseller = BestSeller::orderBy(\"order_number\",\"asc\")->get();\n         $portofolio = Portofolio::all();\n         $product = Product::all();\n         return view(\"index\",compact(\"portofolio\",\"product\"));\n     }\n"
+                },
+                {
+                    "date": 1731338901651,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n     {\n         $bestseller = BestSeller::orderBy(\"order_number\",\"asc\")->get();\n         $portofolio = Portofolio::all();\n         $product = Product::all();\n-        return view(\"index\",compact(\"portofolio\",\"product\"));\n+        return view(\"index\",compact(\"portofolio\",\"product\", \"bestseller\"));\n     }\n \n     /**\n      * Show the form for creating a new resource.\n"
+                },
+                {
+                    "date": 1731339059611,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n      * @return \\Illuminate\\Http\\Response\n      */\n     public function index()\n     {\n-        $bestseller = BestSeller::orderBy(\"order_number\",\"asc\")->get();\n+        $bestseller = BestSeller::join(\"product\",\"product.id\",'=','best_seller.id_product')orderBy(\"order_number\",\"asc\")->get();\n         $portofolio = Portofolio::all();\n         $product = Product::all();\n         return view(\"index\",compact(\"portofolio\",\"product\", \"bestseller\"));\n     }\n"
+                },
+                {
+                    "date": 1731339067662,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n      * @return \\Illuminate\\Http\\Response\n      */\n     public function index()\n     {\n-        $bestseller = BestSeller::join(\"product\",\"product.id\",'=','best_seller.id_product')orderBy(\"order_number\",\"asc\")->get();\n+        $bestseller = BestSeller::join(\"product\",\"product.id\",'=','best_seller.id_product')->orderBy(\"order_number\",\"asc\")->get();\n         $portofolio = Portofolio::all();\n         $product = Product::all();\n         return view(\"index\",compact(\"portofolio\",\"product\", \"bestseller\"));\n     }\n"
                 }
             ],
             "date": 1731119479555,

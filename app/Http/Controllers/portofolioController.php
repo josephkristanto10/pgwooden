@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Portofolio;
 use DataTables;
+use Session;
 
 class portofolioController extends Controller
 {
@@ -13,10 +14,20 @@ class portofolioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index_main(){
+        $portofolio = Portofolio::all();
+        return view("portofolio", compact("portofolio"));
+    }
     public function index()
     {
-        $menu = "portofolio";
-        return view("admin.pages.portofolio", compact("menu"));
+        if(Session::has("superuser")){
+            $menu = "portofolio";
+            return view("admin.pages.portofolio", compact("menu"));        
+        }
+        else{
+            return redirect("/datacenter");
+        }
+    
     }
 
     public function see_table_all_porto(){

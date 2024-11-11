@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 40,
+            "activePatchIndex": 84,
             "patches": [
                 {
                     "date": 1731074615009,
@@ -168,6 +168,182 @@
                 {
                     "date": 1731120798131,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n                 'updated_at' => now(),\n             ]);\n \n             $image = $request->file('add_product_image');\n-            $image_name = \"porto_\".$insert_product->id.\".\".$image->getClientOriginalExtension();\n+            $image_name = \"product_\".$insert_product->id.\".\".$image->getClientOriginalExtension();\n             $update_product = Product::where(\"id\",\"=\",$insert_product->id)->update([\"img\" => $image_name]);\n             // $image->storeAs('public/assets/images/product_from_db', $image_name);\n             $image->move(public_path().\"/assets/images/product_from_db\",$image_name);\n             $errormes = \"ok\";\n"
+                },
+                {
+                    "date": 1731301934507,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,11 @@\n      * Display a listing of the resource.\n      *\n      * @return \\Illuminate\\Http\\Response\n      */\n+    public function index_main(){\n+        \n+    }\n     public function index()\n     {\n         $menu = \"product\";\n         return view(\"admin.pages.product\", compact(\"menu\"));\n"
+                },
+                {
+                    "date": 1731301943483,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,12 +12,14 @@\n      * Display a listing of the resource.\n      *\n      * @return \\Illuminate\\Http\\Response\n      */\n+    // main view\n     public function index_main(){\n         \n     }\n-    public function index()\n+    // admin\n+    public function index() \n     {\n         $menu = \"product\";\n         return view(\"admin.pages.product\", compact(\"menu\"));\n     }\n"
+                },
+                {
+                    "date": 1731301951683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,10 @@\n      * @return \\Illuminate\\Http\\Response\n      */\n     // main view\n     public function index_main(){\n-        \n+        $menu = \"product\";\n+        return view(\"product\", compact(\"menu\"));\n     }\n     // admin\n     public function index() \n     {\n"
+                },
+                {
+                    "date": 1731301957625,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,10 +14,10 @@\n      * @return \\Illuminate\\Http\\Response\n      */\n     // main view\n     public function index_main(){\n-        $menu = \"product\";\n-        return view(\"product\", compact(\"menu\"));\n+        // $menu = \"product\";\n+        return view(\"product\");\n     }\n     // admin\n     public function index() \n     {\n"
+                },
+                {
+                    "date": 1731307270887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n      */\n     // main view\n     public function index_main(){\n         // $menu = \"product\";\n+        $product = Product::all();\n         return view(\"product\");\n     }\n     // admin\n     public function index() \n"
+                },
+                {
+                    "date": 1731307279048,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     // main view\n     public function index_main(){\n         // $menu = \"product\";\n         $product = Product::all();\n-        return view(\"product\");\n+        return view(\"product\", compact(\"product\"));\n     }\n     // admin\n     public function index() \n     {\n"
+                },
+                {
+                    "date": 1731331487272,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n \n use Illuminate\\Http\\Request;\n use App\\Models\\Product;\n use DataTables;\n+use Session;\n \n class productController extends Controller\n {\n     /**\n@@ -21,8 +22,9 @@\n     }\n     // admin\n     public function index() \n     {\n+        if\n         $menu = \"product\";\n         return view(\"admin.pages.product\", compact(\"menu\"));\n     }\n \n"
+                },
+                {
+                    "date": 1731331518140,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,11 @@\n     }\n     // admin\n     public function index() \n     {\n-        if\n+        if(Session::has('...')){\n+            \n+        }\n         $menu = \"product\";\n         return view(\"admin.pages.product\", compact(\"menu\"));\n     }\n \n"
+                },
+                {
+                    "date": 1731331528897,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     }\n     // admin\n     public function index() \n     {\n-        if(Session::has('...')){\n+        if(Session::has(superuser)){\n             \n         }\n         $menu = \"product\";\n         return view(\"admin.pages.product\", compact(\"menu\"));\n"
+                },
+                {
+                    "date": 1731331537601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,13 +22,12 @@\n     }\n     // admin\n     public function index() \n     {\n-        if(Session::has(superuser)){\n-            \n+        if(Session::has(\"superuser\")){\n+            $menu = \"product\";\n+            return view(\"admin.pages.product\", compact(\"menu\"));           \n         }\n-        $menu = \"product\";\n-        return view(\"admin.pages.product\", compact(\"menu\"));\n     }\n \n     public function see_table_all_product(){\n         $data = Product::all();\n"
+                },
+                {
+                    "date": 1731331551242,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,11 @@\n         if(Session::has(\"superuser\")){\n             $menu = \"product\";\n             return view(\"admin.pages.product\", compact(\"menu\"));           \n         }\n+        else{\n+            return redirect();\n+        }\n     }\n \n     public function see_table_all_product(){\n         $data = Product::all();\n"
+                },
+                {
+                    "date": 1731331570279,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n             $menu = \"product\";\n             return view(\"admin.pages.product\", compact(\"menu\"));           \n         }\n         else{\n-            return redirect();\n+            return redirect(\"/dashboard_admin\");\n         }\n     }\n \n     public function see_table_all_product(){\n"
+                },
+                {
+                    "date": 1731331697507,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n             $menu = \"product\";\n             return view(\"admin.pages.product\", compact(\"menu\"));           \n         }\n         else{\n-            return redirect(\"/dashboard_admin\");\n+            return redirect(\"/datacenter\");\n         }\n     }\n \n     public function see_table_all_product(){\n"
+                },
+                {
+                    "date": 1731333972645,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,147 @@\n+<?php\n+\n+namespace App\\Http\\Controllers;\n+\n+use Illuminate\\Http\\Request;\n+use App\\Models\\Product;\n+use DataTables;\n+use Session;\n+\n+class productController extends Controller\n+{\n+    /**\n+     * Display a listing of the resource.\n+     *\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    // main view\n+    public function index_main(){\n+        // $menu = \"product\";\n+        $product = Product::all();\n+        return view(\"product\", compact(\"product\"));\n+    }\n+    // admin\n+    public function index() \n+    {\n+        if(Session::has(\"superuser\")){\n+            $menu = \"product\";\n+            return view(\"admin.pages.product\", compact(\"menu\"));           \n+        }\n+        else{\n+            return redirect(\"/datacenter\");\n+        }\n+    }\n+      // admin\n+      public function index() \n+      {\n+          if(Session::has(\"superuser\")){\n+              $menu = \"product\";\n+              return view(\"admin.pages.product\", compact(\"menu\"));           \n+          }\n+          else{\n+              return redirect(\"/datacenter\");\n+          }\n+      }\n+\n+    public function see_table_all_product(){\n+        $data = Product::all();\n+        return DataTables::of($data)->make(true);\n+    }\n+    public function upload_new_product(Request $request){\n+        $status = \"\";\n+        $errormes = \"\";\n+        \n+        if($request->file('add_product_image') != \"\" && $request->add_product_name != \"\" && $request->add_product_price != \"\" && $request->add_product_desc != \"\" ){\n+            $status = \"200\";\n+\n+            $insert_product = Product::create([\n+                'img'     => \"-\",\n+                'name'     => $request->add_product_name,\n+                'description'     => $request->add_product_desc,\n+                'price'     => $request->add_product_price,\n+                'status'   => \"on\",\n+                'created_at' => now(),\n+                'updated_at' => now(),\n+            ]);\n+\n+            $image = $request->file('add_product_image');\n+            $image_name = \"product_\".$insert_product->id.\".\".$image->getClientOriginalExtension();\n+            $update_product = Product::where(\"id\",\"=\",$insert_product->id)->update([\"img\" => $image_name]);\n+            // $image->storeAs('public/assets/images/product_from_db', $image_name);\n+            $image->move(public_path().\"/assets/images/product_from_db\",$image_name);\n+            $errormes = \"ok\";\n+        }\n+        else{\n+            $status = \"500\";\n+            $errormes = \"Please fill all the requirement\";\n+        }\n+\n+        return response()->json(['status' => $status, 'message' => $errormes]);\n+    }\n+\n+    /**\n+     * Show the form for creating a new resource.\n+     *\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function create()\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Store a newly created resource in storage.\n+     *\n+     * @param  \\Illuminate\\Http\\Request  $request\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function store(Request $request)\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Display the specified resource.\n+     *\n+     * @param  int  $id\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function show($id)\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Show the form for editing the specified resource.\n+     *\n+     * @param  int  $id\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function edit($id)\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Update the specified resource in storage.\n+     *\n+     * @param  \\Illuminate\\Http\\Request  $request\n+     * @param  int  $id\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function update(Request $request, $id)\n+    {\n+        //\n+    }\n+\n+    /**\n+     * Remove the specified resource from storage.\n+     *\n+     * @param  int  $id\n+     * @return \\Illuminate\\Http\\Response\n+     */\n+    public function destroy($id)\n+    {\n+        //\n+    }\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1731333978463,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n         else{\n             return redirect(\"/datacenter\");\n         }\n     }\n-      // admin\n+      // index best seller admin\n       public function index() \n       {\n           if(Session::has(\"superuser\")){\n               $menu = \"product\";\n@@ -143,141 +143,5 @@\n     public function destroy($id)\n     {\n         //\n     }\n-}\n-<?php\n-\n-namespace App\\Http\\Controllers;\n-\n-use Illuminate\\Http\\Request;\n-use App\\Models\\Product;\n-use DataTables;\n-use Session;\n-\n-class productController extends Controller\n-{\n-    /**\n-     * Display a listing of the resource.\n-     *\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    // main view\n-    public function index_main(){\n-        // $menu = \"product\";\n-        $product = Product::all();\n-        return view(\"product\", compact(\"product\"));\n-    }\n-    // admin\n-    public function index() \n-    {\n-        if(Session::has(\"superuser\")){\n-            $menu = \"product\";\n-            return view(\"admin.pages.product\", compact(\"menu\"));           \n-        }\n-        else{\n-            return redirect(\"/datacenter\");\n-        }\n-    }\n-\n-    public function see_table_all_product(){\n-        $data = Product::all();\n-        return DataTables::of($data)->make(true);\n-    }\n-    public function upload_new_product(Request $request){\n-        $status = \"\";\n-        $errormes = \"\";\n-        \n-        if($request->file('add_product_image') != \"\" && $request->add_product_name != \"\" && $request->add_product_price != \"\" && $request->add_product_desc != \"\" ){\n-            $status = \"200\";\n-\n-            $insert_product = Product::create([\n-                'img'     => \"-\",\n-                'name'     => $request->add_product_name,\n-                'description'     => $request->add_product_desc,\n-                'price'     => $request->add_product_price,\n-                'status'   => \"on\",\n-                'created_at' => now(),\n-                'updated_at' => now(),\n-            ]);\n-\n-            $image = $request->file('add_product_image');\n-            $image_name = \"product_\".$insert_product->id.\".\".$image->getClientOriginalExtension();\n-            $update_product = Product::where(\"id\",\"=\",$insert_product->id)->update([\"img\" => $image_name]);\n-            // $image->storeAs('public/assets/images/product_from_db', $image_name);\n-            $image->move(public_path().\"/assets/images/product_from_db\",$image_name);\n-            $errormes = \"ok\";\n-        }\n-        else{\n-            $status = \"500\";\n-            $errormes = \"Please fill all the requirement\";\n-        }\n-\n-        return response()->json(['status' => $status, 'message' => $errormes]);\n-    }\n-\n-    /**\n-     * Show the form for creating a new resource.\n-     *\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function create()\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Store a newly created resource in storage.\n-     *\n-     * @param  \\Illuminate\\Http\\Request  $request\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function store(Request $request)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Display the specified resource.\n-     *\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function show($id)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Show the form for editing the specified resource.\n-     *\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function edit($id)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Update the specified resource in storage.\n-     *\n-     * @param  \\Illuminate\\Http\\Request  $request\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function update(Request $request, $id)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Remove the specified resource from storage.\n-     *\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function destroy($id)\n-    {\n-        //\n-    }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1731333983769,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n             return redirect(\"/datacenter\");\n         }\n     }\n       // index best seller admin\n-      public function index() \n+      public function index_best_seller_admin() \n       {\n           if(Session::has(\"superuser\")){\n               $menu = \"product\";\n               return view(\"admin.pages.product\", compact(\"menu\"));           \n"
+                },
+                {
+                    "date": 1731333992415,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n       public function index_best_seller_admin() \n       {\n           if(Session::has(\"superuser\")){\n               $menu = \"product\";\n-              return view(\"admin.pages.product\", compact(\"menu\"));           \n+              return view(\"admin.pages.bestsellerproduct\", compact(\"menu\"));           \n           }\n           else{\n               return redirect(\"/datacenter\");\n           }\n"
+                },
+                {
+                    "date": 1731333999961,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n       // index best seller admin\n       public function index_best_seller_admin() \n       {\n           if(Session::has(\"superuser\")){\n-              $menu = \"product\";\n+              $menu = \"bestsellerproduct\";\n               return view(\"admin.pages.bestsellerproduct\", compact(\"menu\"));           \n           }\n           else{\n               return redirect(\"/datacenter\");\n"
+                },
+                {
+                    "date": 1731334951177,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,9 @@\n     }\n       // index best seller admin\n       public function index_best_seller_admin() \n       {\n+         $all_product = Product::all();\n           if(Session::has(\"superuser\")){\n               $menu = \"bestsellerproduct\";\n               return view(\"admin.pages.bestsellerproduct\", compact(\"menu\"));           \n           }\n"
+                },
+                {
+                    "date": 1731334958717,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n       {\n          $all_product = Product::all();\n           if(Session::has(\"superuser\")){\n               $menu = \"bestsellerproduct\";\n-              return view(\"admin.pages.bestsellerproduct\", compact(\"menu\"));           \n+              return view(\"admin.pages.bestsellerproduct\", compact(\"menu\",\"all_product\"));           \n           }\n           else{\n               return redirect(\"/datacenter\");\n           }\n"
+                },
+                {
+                    "date": 1731335097119,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n     }\n       // index best seller admin\n       public function index_best_seller_admin() \n       {\n-         $all_product = Product::all();\n+         $all_product = Product::orderBy(\"id\",\"desc\");\n           if(Session::has(\"superuser\")){\n               $menu = \"bestsellerproduct\";\n               return view(\"admin.pages.bestsellerproduct\", compact(\"menu\",\"all_product\"));           \n           }\n"
+                },
+                {
+                    "date": 1731335155224,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n namespace App\\Http\\Controllers;\n \n use Illuminate\\Http\\Request;\n use App\\Models\\Product;\n+use App\\Models\\Product;\n use DataTables;\n use Session;\n \n class productController extends Controller\n@@ -33,9 +34,9 @@\n     }\n       // index best seller admin\n       public function index_best_seller_admin() \n       {\n-         $all_product = Product::orderBy(\"id\",\"desc\");\n+         $all_product = Product::orderBy(\"id\",\"desc\")->get();\n           if(Session::has(\"superuser\")){\n               $menu = \"bestsellerproduct\";\n               return view(\"admin.pages.bestsellerproduct\", compact(\"menu\",\"all_product\"));           \n           }\n"
+                },
+                {
+                    "date": 1731335167024,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n namespace App\\Http\\Controllers;\n \n use Illuminate\\Http\\Request;\n use App\\Models\\Product;\n-use App\\Models\\Product;\n+use App\\Models\\BestSeller;\n use DataTables;\n use Session;\n \n class productController extends Controller\n"
+                },
+                {
+                    "date": 1731335190374,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,8 +34,9 @@\n     }\n       // index best seller admin\n       public function index_best_seller_admin() \n       {\n+        $best_seller = BestSeller::orderBy(\"id\", \"asc\")->get();\n          $all_product = Product::orderBy(\"id\",\"desc\")->get();\n           if(Session::has(\"superuser\")){\n               $menu = \"bestsellerproduct\";\n               return view(\"admin.pages.bestsellerproduct\", compact(\"menu\",\"all_product\"));           \n"
+                },
+                {
+                    "date": 1731335211921,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,8 +35,13 @@\n       // index best seller admin\n       public function index_best_seller_admin() \n       {\n         $best_seller = BestSeller::orderBy(\"id\", \"asc\")->get();\n+\n+        $best_seller1 = BestSeller::orderBy(\"id\", \"asc\")->get();\n+        $best_seller2 = BestSeller::orderBy(\"id\", \"asc\")->get();\n+        $best_seller3 = BestSeller::orderBy(\"id\", \"asc\")->get();\n+\n          $all_product = Product::orderBy(\"id\",\"desc\")->get();\n           if(Session::has(\"superuser\")){\n               $menu = \"bestsellerproduct\";\n               return view(\"admin.pages.bestsellerproduct\", compact(\"menu\",\"all_product\"));           \n"
+                },
+                {
+                    "date": 1731335223474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n       public function index_best_seller_admin() \n       {\n         $best_seller = BestSeller::orderBy(\"id\", \"asc\")->get();\n \n-        $best_seller1 = BestSeller::orderBy(\"id\", \"asc\")->get();\n+        $best_seller1 = $best_seller[0];\n         $best_seller2 = BestSeller::orderBy(\"id\", \"asc\")->get();\n         $best_seller3 = BestSeller::orderBy(\"id\", \"asc\")->get();\n \n          $all_product = Product::orderBy(\"id\",\"desc\")->get();\n"
+                },
+                {
+                    "date": 1731335229456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,10 +37,10 @@\n       {\n         $best_seller = BestSeller::orderBy(\"id\", \"asc\")->get();\n \n         $best_seller1 = $best_seller[0];\n-        $best_seller2 = BestSeller::orderBy(\"id\", \"asc\")->get();\n-        $best_seller3 = BestSeller::orderBy(\"id\", \"asc\")->get();\n+        $best_seller2 = $best_seller[0];\n+        $best_seller3 = $best_seller[0];\n \n          $all_product = Product::orderBy(\"id\",\"desc\")->get();\n           if(Session::has(\"superuser\")){\n               $menu = \"bestsellerproduct\";\n"
+                },
+                {
+                    "date": 1731335237095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,15 +37,15 @@\n       {\n         $best_seller = BestSeller::orderBy(\"id\", \"asc\")->get();\n \n         $best_seller1 = $best_seller[0];\n-        $best_seller2 = $best_seller[0];\n-        $best_seller3 = $best_seller[0];\n+        $best_seller2 = $best_seller[1];\n+        $best_seller3 = $best_seller[2];\n \n          $all_product = Product::orderBy(\"id\",\"desc\")->get();\n           if(Session::has(\"superuser\")){\n               $menu = \"bestsellerproduct\";\n-              return view(\"admin.pages.bestsellerproduct\", compact(\"menu\",\"all_product\"));           \n+              return view(\"admin.pages.bestsellerproduct\", compact(\"menu\",\"all_product\",\"best_seller1\"));           \n           }\n           else{\n               return redirect(\"/datacenter\");\n           }\n"
+                },
+                {
+                    "date": 1731335385243,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n \n          $all_product = Product::orderBy(\"id\",\"desc\")->get();\n           if(Session::has(\"superuser\")){\n               $menu = \"bestsellerproduct\";\n-              return view(\"admin.pages.bestsellerproduct\", compact(\"menu\",\"all_product\",\"best_seller1\"));           \n+              return view(\"admin.pages.bestsellerproduct\", compact(\"menu\",\"all_product\",\"best_seller1\",\"best_seller1\",\"best_seller1\"));           \n           }\n           else{\n               return redirect(\"/datacenter\");\n           }\n"
+                },
+                {
+                    "date": 1731335715887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n \n          $all_product = Product::orderBy(\"id\",\"desc\")->get();\n           if(Session::has(\"superuser\")){\n               $menu = \"bestsellerproduct\";\n-              return view(\"admin.pages.bestsellerproduct\", compact(\"menu\",\"all_product\",\"best_seller1\",\"best_seller1\",\"best_seller1\"));           \n+              return view(\"admin.pages.bestsellerproduct\", compact(\"menu\",\"all_product\",\"best_seller1\",\"best_seller2\",\"best_seller3\"));           \n           }\n           else{\n               return redirect(\"/datacenter\");\n           }\n@@ -54,8 +54,11 @@\n     public function see_table_all_product(){\n         $data = Product::all();\n         return DataTables::of($data)->make(true);\n     }\n+    public function update_best_sellers(){\n+        \n+    }\n     public function upload_new_product(Request $request){\n         $status = \"\";\n         $errormes = \"\";\n         \n"
+                },
+                {
+                    "date": 1731335736889,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,10 @@\n     public function see_table_all_product(){\n         $data = Product::all();\n         return DataTables::of($data)->make(true);\n     }\n-    public function update_best_sellers(){\n+    public function update_best_sellers(Request $request){\n+        $data1 = $request->opsi1;\n         \n     }\n     public function upload_new_product(Request $request){\n         $status = \"\";\n"
+                },
+                {
+                    "date": 1731335745984,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,8 +56,10 @@\n         return DataTables::of($data)->make(true);\n     }\n     public function update_best_sellers(Request $request){\n         $data1 = $request->opsi1;\n+        $data2 = $request->opsi2;\n+        $data3 = $request->opsi3;\n         \n     }\n     public function upload_new_product(Request $request){\n         $status = \"\";\n"
+                },
+                {
+                    "date": 1731335759674,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,11 @@\n     public function update_best_sellers(Request $request){\n         $data1 = $request->opsi1;\n         $data2 = $request->opsi2;\n         $data3 = $request->opsi3;\n+\n         \n+        \n     }\n     public function upload_new_product(Request $request){\n         $status = \"\";\n         $errormes = \"\";\n"
+                },
+                {
+                    "date": 1731335785599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,9 @@\n     public function update_best_sellers(Request $request){\n         $data1 = $request->opsi1;\n         $data2 = $request->opsi2;\n         $data3 = $request->opsi3;\n-\n+        $update_product = Product::where(\"id\",\"=\",$insert_product->id)->update([\"img\" => $image_name]);\n         \n         \n     }\n     public function upload_new_product(Request $request){\n"
+                },
+                {
+                    "date": 1731335826712,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,11 +58,12 @@\n     public function update_best_sellers(Request $request){\n         $data1 = $request->opsi1;\n         $data2 = $request->opsi2;\n         $data3 = $request->opsi3;\n-        $update_product = Product::where(\"id\",\"=\",$insert_product->id)->update([\"img\" => $image_name]);\n         \n+        $update_product = Product::where(\"order_number\",\"=\",1)->update([\"img\" => $image_name]);\n         \n+        \n     }\n     public function upload_new_product(Request $request){\n         $status = \"\";\n         $errormes = \"\";\n"
+                },
+                {
+                    "date": 1731335835989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n         $data1 = $request->opsi1;\n         $data2 = $request->opsi2;\n         $data3 = $request->opsi3;\n         \n-        $update_product = Product::where(\"order_number\",\"=\",1)->update([\"img\" => $image_name]);\n+        $update_product = Product::where(\"order_number\",\"=\",1)->update([\"id_product\" => $data1]);\n         \n         \n     }\n     public function upload_new_product(Request $request){\n"
+                },
+                {
+                    "date": 1731335847011,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,8 +60,10 @@\n         $data2 = $request->opsi2;\n         $data3 = $request->opsi3;\n         \n         $update_product = Product::where(\"order_number\",\"=\",1)->update([\"id_product\" => $data1]);\n+        $update_product = Product::where(\"order_number\",\"=\",2)->update([\"id_product\" => $data2]);\n+        $update_product = Product::where(\"order_number\",\"=\",3)->update([\"id_product\" => $data3]);\n         \n         \n     }\n     public function upload_new_product(Request $request){\n"
+                },
+                {
+                    "date": 1731335857901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,9 +63,9 @@\n         $update_product = Product::where(\"order_number\",\"=\",1)->update([\"id_product\" => $data1]);\n         $update_product = Product::where(\"order_number\",\"=\",2)->update([\"id_product\" => $data2]);\n         $update_product = Product::where(\"order_number\",\"=\",3)->update([\"id_product\" => $data3]);\n         \n-        \n+        return response()->json(['status' => $status, 'message' => $errormes]);\n     }\n     public function upload_new_product(Request $request){\n         $status = \"\";\n         $errormes = \"\";\n"
+                },
+                {
+                    "date": 1731335864025,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,9 +63,9 @@\n         $update_product = Product::where(\"order_number\",\"=\",1)->update([\"id_product\" => $data1]);\n         $update_product = Product::where(\"order_number\",\"=\",2)->update([\"id_product\" => $data2]);\n         $update_product = Product::where(\"order_number\",\"=\",3)->update([\"id_product\" => $data3]);\n         \n-        return response()->json(['status' => $status, 'message' => $errormes]);\n+        return response()->json(['status' => \"200\", 'message' => \"ok\"]);\n     }\n     public function upload_new_product(Request $request){\n         $status = \"\";\n         $errormes = \"\";\n"
+                },
+                {
+                    "date": 1731336249336,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n         $data1 = $request->opsi1;\n         $data2 = $request->opsi2;\n         $data3 = $request->opsi3;\n         \n-        $update_product = Product::where(\"order_number\",\"=\",1)->update([\"id_product\" => $data1]);\n+        $update_product = Bestseller::where(\"order_number\",\"=\",1)->update([\"id_product\" => $data1]);\n         $update_product = Product::where(\"order_number\",\"=\",2)->update([\"id_product\" => $data2]);\n         $update_product = Product::where(\"order_number\",\"=\",3)->update([\"id_product\" => $data3]);\n         \n         return response()->json(['status' => \"200\", 'message' => \"ok\"]);\n"
+                },
+                {
+                    "date": 1731336255951,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,11 +59,11 @@\n         $data1 = $request->opsi1;\n         $data2 = $request->opsi2;\n         $data3 = $request->opsi3;\n         \n-        $update_product = Bestseller::where(\"order_number\",\"=\",1)->update([\"id_product\" => $data1]);\n-        $update_product = Product::where(\"order_number\",\"=\",2)->update([\"id_product\" => $data2]);\n-        $update_product = Product::where(\"order_number\",\"=\",3)->update([\"id_product\" => $data3]);\n+        $update_product = BestSeller::where(\"order_number\",\"=\",1)->update([\"id_product\" => $data1]);\n+        $update_product = BestSeller::where(\"order_number\",\"=\",2)->update([\"id_product\" => $data2]);\n+        $update_product = BestSeller::where(\"order_number\",\"=\",3)->update([\"id_product\" => $data3]);\n         \n         return response()->json(['status' => \"200\", 'message' => \"ok\"]);\n     }\n     public function upload_new_product(Request $request){\n"
+                },
+                {
+                    "date": 1731336976698,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n     }\n       // index best seller admin\n       public function index_best_seller_admin() \n       {\n-        $best_seller = BestSeller::orderBy(\"id\", \"asc\")->get();\n+        $best_seller = BestSeller::orderBy(\"order_number\", \"asc\")->get();\n \n         $best_seller1 = $best_seller[0];\n         $best_seller2 = $best_seller[1];\n         $best_seller3 = $best_seller[2];\n"
+                },
+                {
+                    "date": 1731339222776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n      */\n     // main view\n     public function index_main(){\n         // $menu = \"product\";\n+        $bestseller = BestSeller::join(\"product\",\"product.id\",'=','best_seller.id_product')->orderBy(\"order_number\",\"asc\")->get();\n         $product = Product::all();\n         return view(\"product\", compact(\"product\"));\n     }\n     // admin\n"
+                },
+                {
+                    "date": 1731339229509,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n     public function index_main(){\n         // $menu = \"product\";\n         $bestseller = BestSeller::join(\"product\",\"product.id\",'=','best_seller.id_product')->orderBy(\"order_number\",\"asc\")->get();\n         $product = Product::all();\n-        return view(\"product\", compact(\"product\"));\n+        return view(\"product\", compact(\"product\", \"bestseller\"));\n     }\n     // admin\n     public function index() \n     {\n"
                 }
             ],
             "date": 1731074615009,

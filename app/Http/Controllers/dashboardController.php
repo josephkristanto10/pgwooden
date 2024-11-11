@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 class dashboardController extends Controller
 {
@@ -13,8 +14,14 @@ class dashboardController extends Controller
      */
     public function index()
     {
-        $menu = "dashboard";
-        return view("admin.pages.dashboard", compact("menu"));
+        if(Session::has("superuser")){
+            $menu = "dashboard";
+            return view("admin.pages.dashboard", compact("menu"));    
+        }
+        else{
+            return redirect("/datacenter");
+        }
+    
     }
 
     /**

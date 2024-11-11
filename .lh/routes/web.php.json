@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 51,
+            "activePatchIndex": 67,
             "patches": [
                 {
                     "date": 1730634696428,
@@ -212,6 +212,70 @@
                 {
                     "date": 1731121435425,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n use App\\Http\\Controllers\\productController;\n use App\\Http\\Controllers\\portofolioController;\n use App\\Http\\Controllers\\mainhomeController;\n use App\\Http\\Controllers\\homeController;\n+use App\\Http\\Controllers\\loginController;\n \n /*\n |--------------------------------------------------------------------------\n | Web Routes\n"
+                },
+                {
+                    "date": 1731301868459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n });\n \n Route::get('/',[homeController::class,\"index\"]);\n Route::get('/datacenter',[loginController::class,\"index\"]);\n+Route::get('/datacenter',[loginController::class,\"index\"]);\n Route::get('/dashboard_admin',[dashboardController::class,\"index\"]);\n Route::get('/product_admin',[productController::class,\"index\"]);\n Route::get('/portofolio_admin',[portofolioController::class,\"index\"]);\n Route::get('/mainhome_admin',[mainhomeController::class,\"index\"]);\n"
+                },
+                {
+                    "date": 1731301887383,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n use App\\Http\\Controllers\\portofolioController;\n use App\\Http\\Controllers\\mainhomeController;\n use App\\Http\\Controllers\\homeController;\n use App\\Http\\Controllers\\loginController;\n+use App\\Http\\Controllers\\loginController;\n \n /*\n |--------------------------------------------------------------------------\n | Web Routes\n@@ -24,10 +25,10 @@\n     return view('admin.pages.signin');\n });\n \n Route::get('/',[homeController::class,\"index\"]);\n+Route::get('/product',[loginController::class,\"index\"]);\n Route::get('/datacenter',[loginController::class,\"index\"]);\n-Route::get('/datacenter',[loginController::class,\"index\"]);\n Route::get('/dashboard_admin',[dashboardController::class,\"index\"]);\n Route::get('/product_admin',[productController::class,\"index\"]);\n Route::get('/portofolio_admin',[portofolioController::class,\"index\"]);\n Route::get('/mainhome_admin',[mainhomeController::class,\"index\"]);\n"
+                },
+                {
+                    "date": 1731301910758,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,8 @@\n use App\\Http\\Controllers\\portofolioController;\n use App\\Http\\Controllers\\mainhomeController;\n use App\\Http\\Controllers\\homeController;\n use App\\Http\\Controllers\\loginController;\n-use App\\Http\\Controllers\\loginController;\n \n /*\n |--------------------------------------------------------------------------\n | Web Routes\n"
+                },
+                {
+                    "date": 1731302002252,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     return view('admin.pages.signin');\n });\n \n Route::get('/',[homeController::class,\"index\"]);\n-Route::get('/product',[loginController::class,\"index\"]);\n+Route::get('/product',[productController::class,\"index\"]);\n Route::get('/datacenter',[loginController::class,\"index\"]);\n Route::get('/dashboard_admin',[dashboardController::class,\"index\"]);\n Route::get('/product_admin',[productController::class,\"index\"]);\n Route::get('/portofolio_admin',[portofolioController::class,\"index\"]);\n"
+                },
+                {
+                    "date": 1731302014052,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     return view('admin.pages.signin');\n });\n \n Route::get('/',[homeController::class,\"index\"]);\n-Route::get('/product',[productController::class,\"index\"]);\n+Route::get('/productfurniture',[productController::class,\"index\"]);\n Route::get('/datacenter',[loginController::class,\"index\"]);\n Route::get('/dashboard_admin',[dashboardController::class,\"index\"]);\n Route::get('/product_admin',[productController::class,\"index\"]);\n Route::get('/portofolio_admin',[portofolioController::class,\"index\"]);\n"
+                },
+                {
+                    "date": 1731302025814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     return view('admin.pages.signin');\n });\n \n Route::get('/',[homeController::class,\"index\"]);\n-Route::get('/productfurniture',[productController::class,\"index\"]);\n+Route::get('/productfurniture',[productController::class,\"index)main\"]);\n Route::get('/datacenter',[loginController::class,\"index\"]);\n Route::get('/dashboard_admin',[dashboardController::class,\"index\"]);\n Route::get('/product_admin',[productController::class,\"index\"]);\n Route::get('/portofolio_admin',[portofolioController::class,\"index\"]);\n"
+                },
+                {
+                    "date": 1731308229785,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     return view('admin.pages.signin');\n });\n \n Route::get('/',[homeController::class,\"index\"]);\n-Route::get('/productfurniture',[productController::class,\"index)main\"]);\n+Route::get('/productfurniture',[productController::class,\"index_main\"]);\n Route::get('/datacenter',[loginController::class,\"index\"]);\n Route::get('/dashboard_admin',[dashboardController::class,\"index\"]);\n Route::get('/product_admin',[productController::class,\"index\"]);\n Route::get('/portofolio_admin',[portofolioController::class,\"index\"]);\n"
+                },
+                {
+                    "date": 1731311303447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n });\n \n Route::get('/',[homeController::class,\"index\"]);\n Route::get('/productfurniture',[productController::class,\"index_main\"]);\n+Route::get('/productfurniture',[productController::class,\"index_main\"]);\n Route::get('/datacenter',[loginController::class,\"index\"]);\n Route::get('/dashboard_admin',[dashboardController::class,\"index\"]);\n Route::get('/product_admin',[productController::class,\"index\"]);\n Route::get('/portofolio_admin',[portofolioController::class,\"index\"]);\n"
+                },
+                {
+                    "date": 1731311314206,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n });\n \n Route::get('/',[homeController::class,\"index\"]);\n Route::get('/productfurniture',[productController::class,\"index_main\"]);\n-Route::get('/productfurniture',[productController::class,\"index_main\"]);\n+Route::get('/portofoliofurniture',[portofolioController::class,\"index_main\"]);\n Route::get('/datacenter',[loginController::class,\"index\"]);\n Route::get('/dashboard_admin',[dashboardController::class,\"index\"]);\n Route::get('/product_admin',[productController::class,\"index\"]);\n Route::get('/portofolio_admin',[portofolioController::class,\"index\"]);\n"
+                },
+                {
+                    "date": 1731314948348,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,5 +37,8 @@\n Route::post('/upload_products', [productController::class,\"upload_new_product\"])->name(\"upload_product\");\n \n \n Route::get('/get_table_portofolio', [portofolioController::class,\"see_table_all_porto\"])->name(\"getallportofolio\");\n-Route::get('/get_table_product',[productController::class,\"see_table_all_product\"])->name(\"getallproduct\");\n\\ No newline at end of file\n+Route::get('/get_table_product',[productController::class,\"see_table_all_product\"])->name(\"getallproduct\");\n+\n+Route::post(\"/logincheck\"),[productController::class,\"see_table_all_product\"])->name(\"getallproduct\");\n+login_check\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1731314953506,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,6 +39,5 @@\n \n Route::get('/get_table_portofolio', [portofolioController::class,\"see_table_all_porto\"])->name(\"getallportofolio\");\n Route::get('/get_table_product',[productController::class,\"see_table_all_product\"])->name(\"getallproduct\");\n \n-Route::post(\"/logincheck\"),[productController::class,\"see_table_all_product\"])->name(\"getallproduct\");\n-login_check\n\\ No newline at end of file\n+Route::post(\"/logincheck\" ,[productController::class,\"see_table_all_product\"])->name(\"login_check\");\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1731314960578,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,5 +39,5 @@\n \n Route::get('/get_table_portofolio', [portofolioController::class,\"see_table_all_porto\"])->name(\"getallportofolio\");\n Route::get('/get_table_product',[productController::class,\"see_table_all_product\"])->name(\"getallproduct\");\n \n-Route::post(\"/logincheck\" ,[productController::class,\"see_table_all_product\"])->name(\"login_check\");\n\\ No newline at end of file\n+Route::post(\"/logincheck\" ,[loginController::class,\"login_check\"])->name(\"login_check\");\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1731334036311,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,8 +29,9 @@\n Route::get('/portofoliofurniture',[portofolioController::class,\"index_main\"]);\n Route::get('/datacenter',[loginController::class,\"index\"]);\n Route::get('/dashboard_admin',[dashboardController::class,\"index\"]);\n Route::get('/product_admin',[productController::class,\"index\"]);\n+Route::get('/bestsellerproduct_admin',[productController::class,\"index\"]);\n Route::get('/portofolio_admin',[portofolioController::class,\"index\"]);\n Route::get('/mainhome_admin',[mainhomeController::class,\"index\"]);\n \n Route::post('/upload_portofolio', [portofolioController::class,\"upload_new_portofolio\"])->name(\"upload_porto\");\n@@ -39,5 +40,5 @@\n \n Route::get('/get_table_portofolio', [portofolioController::class,\"see_table_all_porto\"])->name(\"getallportofolio\");\n Route::get('/get_table_product',[productController::class,\"see_table_all_product\"])->name(\"getallproduct\");\n \n-Route::post(\"/logincheck\" ,[loginController::class,\"login_check\"])->name(\"login_check\");\n\\ No newline at end of file\n+Route::post(\"/logincheck\" ,[loginController::class,\"login_checks\"])->name(\"login_check\");\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1731334044776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n Route::get('/portofoliofurniture',[portofolioController::class,\"index_main\"]);\n Route::get('/datacenter',[loginController::class,\"index\"]);\n Route::get('/dashboard_admin',[dashboardController::class,\"index\"]);\n Route::get('/product_admin',[productController::class,\"index\"]);\n-Route::get('/bestsellerproduct_admin',[productController::class,\"index\"]);\n+Route::get('/bestsellerproduct_admin',[productController::class,\"index_best_seller_admin\"]);\n Route::get('/portofolio_admin',[portofolioController::class,\"index\"]);\n Route::get('/mainhome_admin',[mainhomeController::class,\"index\"]);\n \n Route::post('/upload_portofolio', [portofolioController::class,\"upload_new_portofolio\"])->name(\"upload_porto\");\n"
+                },
+                {
+                    "date": 1731335694786,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,10 +35,11 @@\n Route::get('/mainhome_admin',[mainhomeController::class,\"index\"]);\n \n Route::post('/upload_portofolio', [portofolioController::class,\"upload_new_portofolio\"])->name(\"upload_porto\");\n Route::post('/upload_products', [productController::class,\"upload_new_product\"])->name(\"upload_product\");\n+Route::post('/upload_products', [productController::class,\"upload_new_product\"])->name(\"upload_product\");\n+update_best_seller\n \n-\n Route::get('/get_table_portofolio', [portofolioController::class,\"see_table_all_porto\"])->name(\"getallportofolio\");\n Route::get('/get_table_product',[productController::class,\"see_table_all_product\"])->name(\"getallproduct\");\n \n Route::post(\"/logincheck\" ,[loginController::class,\"login_checks\"])->name(\"login_check\");\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1731335703875,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,11 +35,11 @@\n Route::get('/mainhome_admin',[mainhomeController::class,\"index\"]);\n \n Route::post('/upload_portofolio', [portofolioController::class,\"upload_new_portofolio\"])->name(\"upload_porto\");\n Route::post('/upload_products', [productController::class,\"upload_new_product\"])->name(\"upload_product\");\n-Route::post('/upload_products', [productController::class,\"upload_new_product\"])->name(\"upload_product\");\n-update_best_seller\n+Route::post('/update_best_sellers', [productController::class,\"update_best_seller\"])->name(\"update_best_seller\");\n \n+\n Route::get('/get_table_portofolio', [portofolioController::class,\"see_table_all_porto\"])->name(\"getallportofolio\");\n Route::get('/get_table_product',[productController::class,\"see_table_all_product\"])->name(\"getallproduct\");\n \n Route::post(\"/logincheck\" ,[loginController::class,\"login_checks\"])->name(\"login_check\");\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1730634696427,

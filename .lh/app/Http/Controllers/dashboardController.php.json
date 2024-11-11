@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1731072758972,
@@ -20,6 +20,14 @@
                 {
                     "date": 1731082725928,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n      * @return \\Illuminate\\Http\\Response\n      */\n     public function index()\n     {\n+        $menu = \"dashboard\";\n         return view(\"admin.pages.dashboard\", compact(\"menu\"));\n     }\n \n     /**\n@@ -80,89 +81,5 @@\n     public function destroy($id)\n     {\n         //\n     }\n-}\n-<?php\n-\n-namespace App\\Http\\Controllers;\n-\n-use Illuminate\\Http\\Request;\n-\n-class dashboardController extends Controller\n-{\n-    /**\n-     * Display a listing of the resource.\n-     *\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function index()\n-    {\n-        return view(\"admin.pages.dashboard\");\n-    }\n-\n-    /**\n-     * Show the form for creating a new resource.\n-     *\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function create()\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Store a newly created resource in storage.\n-     *\n-     * @param  \\Illuminate\\Http\\Request  $request\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function store(Request $request)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Display the specified resource.\n-     *\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function show($id)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Show the form for editing the specified resource.\n-     *\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function edit($id)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Update the specified resource in storage.\n-     *\n-     * @param  \\Illuminate\\Http\\Request  $request\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function update(Request $request, $id)\n-    {\n-        //\n-    }\n-\n-    /**\n-     * Remove the specified resource from storage.\n-     *\n-     * @param  int  $id\n-     * @return \\Illuminate\\Http\\Response\n-     */\n-    public function destroy($id)\n-    {\n-        //\n-    }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1731331756534,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,16 @@\n      * @return \\Illuminate\\Http\\Response\n      */\n     public function index()\n     {\n-        $menu = \"dashboard\";\n-        return view(\"admin.pages.dashboard\", compact(\"menu\"));\n+        if(Session::has(\"superuser\")){\n+            $menu = \"dashboard\";\n+            return view(\"admin.pages.dashboard\", compact(\"menu\"));    \n+        }\n+        else{\n+            return redirect(\"/datacenter\");\n+        }\n+    \n     }\n \n     /**\n      * Show the form for creating a new resource.\n"
+                },
+                {
+                    "date": 1731331772667,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n \n namespace App\\Http\\Controllers;\n \n use Illuminate\\Http\\Request;\n+use Session;\n \n class dashboardController extends Controller\n {\n     /**\n"
                 }
             ],
             "date": 1731072758972,

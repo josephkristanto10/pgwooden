@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Login;
+use Hash;
+use Session;
 
 class loginController extends Controller
 {
@@ -14,7 +16,34 @@ class loginController extends Controller
      */
     public function index()
     {
+    //    Session::flush();
        return view("admin.pages.signin");
+    }
+    public function login_checks(Request $request){
+        
+        $username = $request->username;
+        $password = $request->pwd;
+        // $encrypted = bcrypt($request->password);
+        $status = "500";
+        $errormes = "error";
+        $usercheck_fromdb = Login::where("user", "=",$username)->select("*")->first();
+        if($usercheck_fromdb){
+            if (Hash::check($password, $usercheck_fromdb->password)) {
+                $status = "200";
+                $errormes = "ok";
+                Session::flush();
+                Session::put('superuser', "yes");
+                
+            }
+            else{
+                $status = "500";
+                $errormes = "error";
+            }
+        
+        }
+        return response()->json(['status' => $status, 'message' => $errormes]);
+        // $encrypted = bcrypt($password);
+
     }
 
     /**

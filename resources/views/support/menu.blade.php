@@ -13,9 +13,10 @@
 <!-- Collect the nav links, forms, and other content for toggling -->
 <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu" style = "background: #f1f1f1;">
     <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-        <li class=" scroll active"><a href="#home">Home</a></li>
-        <li class="scroll"><a href="#new-arrivals">Product </a></li>
-        <li class="scroll"><a href="#feature">About Us</a></li>
+        <li ><a href="{{url('/')}}" style = "z-index:1000;">Home</a></li>
+        <li ><a href="{{url('/productfurniture')}}">Product </a></li>
+        <li ><a href="{{url('/portofoliofurniture')}}">Portofolio </a></li>
+        <li ><a href="{{url('/')}}">About Us</a></li>
         {{-- <li class="scroll"><a href="#blog">blog</a></li>
         <li class="scroll"><a href="#newsletter">contact</a></li> --}}
     </ul><!--/.nav -->
