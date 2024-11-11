@@ -29,7 +29,7 @@
                 <img src = "{{asset('assets/logo/logo_pg_wooden.png')}}">
                 {{-- <p class="text-center">PGD DATA CENTER</p> --}}
                 <form id = "formlogin">
-                  {{ csrf_token() }}
+                <span style = "color:white;">  {{ csrf_token() }}</span>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Username</label>
                     <input type="email" name = "username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">

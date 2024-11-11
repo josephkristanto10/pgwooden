@@ -183,7 +183,18 @@ nav.navbar.bootsnav ul.nav > li > a {
 	.sofa-collection::before, .sofa-collection::after{
 		width:100% !important;
 	}
-	
+	.gbr{
+		height:200px !important;
+	}
+	.single-new-arrival-bg{
+		min-height: 200px !important;
+	}
+	.single-new-arrival-bg .gbr{
+		height: 200px !important;
+	}
+	.single-new-arrival-bg img{
+		height: 200px !important;
+	}
 }
 
 
@@ -253,6 +264,18 @@ nav.navbar.bootsnav ul.nav > li > a {
 	}
 	.sofa-collection::before, .sofa-collection::after{
 		width:100% !important;
+	}
+	.gbr{
+		height:200px !important;
+	}
+	.single-new-arrival-bg{
+		min-height: 200px !important;
+	}
+	.single-new-arrival-bg .gbr{
+		height: 200px !important;
+	}
+	.single-new-arrival-bg img{
+		height: 200px !important;
 	}
  }
 
@@ -536,7 +559,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 							<div class="single-new-arrival">
 								<a href = "https://wa.me/+6281328835401?text=Halo%20PGD%20Wooden%20House%20Furniture%2C%20Saya%20dapat%20ini%20dari%20website.%20Saya%20ingin%20tanya%20tanya%20tentang%20portofolio%20dengan%20id%20{{$por->id}}%20dan%20portofolio%22nya%20ya">
 									<div class="single-new-arrival-bg">
-									<img src="{{asset('assets/images/portofolio_from_db/'.$por->img)}}" style = "height:300px;" alt="new-arrivals images">
+									<img class = "gbr" src="{{asset('assets/images/portofolio_from_db/'.$por->img)}}" style = "height:300px;" alt="new-arrivals images">
 									<div class="single-new-arrival-bg-overlay"></div>
 									<div class="sale bg-1">
 										<p>sale</p>
@@ -571,7 +594,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 						@foreach($bestseller as $bs)
 						<div class = "col col-sm-4 col-md-4 col-xs-6 mt-5">
 							<div class="" style = "margin-top: 30px;">
-								<img src="{{asset('assets/images/product_from_db/'.$bs->img.'')}}" style = "height:300px;"  alt="populer-products images">
+								<img class = "gbr" src="{{asset('assets/images/product_from_db/'.$bs->img.'')}}" style = "height:300px;"  alt="populer-products images">
 							</div>
 							<h2><a href="https://wa.me/+6281328835401?text=Halo%20PGD%20Wooden%20House%20Furniture%2C%20Saya%20dapat%20ini%20dari%20website.%20Saya%20ingin%20tanya%20tanya%20tentang%20produknya%20dengan%20id%20{{$bs->id}}%20dan%20portofolio%22nya%20ya" style = "margin-top: 20px;">{{$bs->name}}</a></h2>
 							<div class="caption_populer_product" style = "margin-top: 20px;">
@@ -634,7 +657,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 						<div class = "col col-sm-4 col-md-4 col-xs-6 mt-5">
 							<div class="single-new-arrival">
 								<div class="single-new-arrival-bg">
-									<img src="{{asset('assets/images/product_from_db/'.$pro->img)}}" alt="new-arrivals images">
+									<img class = "gbr" src="{{asset('assets/images/product_from_db/'.$pro->img)}}" alt="new-arrivals images">
 									<div class="single-new-arrival-bg-overlay"></div>
 									<div class="sale bg-1">
 										<p>sale</p>
@@ -1114,6 +1137,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 			</div><!--/.scroll-Top-->
 			
         </footer>
+
 		
 		<!-- Include all js compiled plugins (below), or include individual files as needed -->
 
@@ -1137,7 +1161,8 @@ nav.navbar.bootsnav ul.nav > li > a {
         
         <!--Custom JS-->
         <script src="{{asset('assets/js/custom.js')}}"></script>
-        
+		<a><img src = "{{asset('assets/logo/logo_wa.png')}}" style = "width:55px;height:55px;z-index:1000;position:fixed;bottom:85px;right:25px;"/></a>
+
     </body>
 	<script>
 		$(document).ready(function () {
