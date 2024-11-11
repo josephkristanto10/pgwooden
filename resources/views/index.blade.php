@@ -1158,10 +1158,11 @@ nav.navbar.bootsnav ul.nav > li > a {
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 		
+
         
         <!--Custom JS-->
         <script src="{{asset('assets/js/custom.js')}}"></script>
-		<a><img src = "{{asset('assets/logo/logo_wa.png')}}" style = "width:55px;height:55px;z-index:1000;position:fixed;bottom:85px;right:25px;"/></a>
+		<a href = "https://wa.me/+6281328835401?text=Halo%20PGD%20Wooden%20House%20Furniture%2C%20Saya%20dapat%20ini%20dari%20website.%20Saya%20ingin%20tanya%20tanya%20tentang%20furniture"><img src = "{{asset('assets/logo/logo_wa.png')}}" style = "width:55px;height:55px;z-index:1000;position:fixed;bottom:85px;right:25px;"/></a>
 
     </body>
 	<script>
