@@ -304,7 +304,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 	
 	<body>
 	
-		<header id="home" class="welcome-hero" style = "background:url({{asset('assets/images/slider/background_slider.jpg')}});background-size:cover;background-repeat:no-repeat;">
+		<header id="home" class="welcome-hero" style = "background:url({{asset('assets/images/mainhome_from_db/'.$mainhome[0]->img_slogan ) }});background-size:cover;background-repeat:no-repeat;">
 
 			<div id="header-carousel" style = "height:100%;" class="carousel slide carousel-fade" data-ride="carousel">
 				<!--/.carousel-indicator -->
@@ -470,7 +470,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 								<div class="row">
 									<div class="col-md-7 col-sm-12">
 										<div class="single-inner-populer-product-img">
-											<img src="{{asset('assets/images/aboutus/gambar_about_us.jpeg')}}" alt="populer-products images">
+											<img src="{{asset('assets/images/mainhome_from_db/'.$mainhome[0]->img_about_us )}}" alt="populer-products images">
 										</div>
 									</div>
 									<div class="col-md-5 col-sm-12">
@@ -602,42 +602,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 							</div>
 						</div>
 						@endforeach
-						
-						{{-- <div class="col-md-4">
-							<div class="single-populer-products">
-								<div class="single-populer-product-img mt40">
-									<img src="assets/images/populer-products/p1.png" alt="populer-products images">
-								</div>
-								<h2><a href="#">arm chair</a></h2>
-								<div class="single-populer-products-para">
-									<p>Nemo enim ipsam voluptatem quia volu ptas sit asperna aut odit aut fugit.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="single-populer-products">
-								<div class="single-populer-product-img mt40">
-									<img src="assets/images/populer-products/p1.png" alt="populer-products images">
-								</div>
-								<h2><a href="#">arm chair</a></h2>
-								<div class="single-populer-products-para">
-									<p>Nemo enim ipsam voluptatem quia volu ptas sit asperna aut odit aut fugit.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="single-populer-products">
-								<div class="single-populer-products">
-									<div class="single-populer-product-img">
-										<img src="assets/images/populer-products/p3.png" alt="populer-products images">
-									</div>
-									<h2><a href="#">hanging lamp</a></h2>
-									<div class="single-populer-products-para">
-										<p>Nemo enim ipsam voluptatem quia volu ptas sit asperna aut odit aut fugit.</p>
-									</div>
-								</div>
-							</div>
-						</div> --}}
+					
 					</div>
 				</div>
 			</div>
@@ -667,10 +632,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 											<span class="lnr lnr-cart"></span>
 											<a href="#">Contact Whatsapp </a>
 										</p>
-										{{-- <p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p> --}}
+
 									</div>
 								</div>
 								<h4><a href="#">{{$pro->name}}</a></h4>
@@ -678,158 +640,6 @@ nav.navbar.bootsnav ul.nav > li > a {
 							</div>
 						</div>
 						@endforeach
-						{{-- <div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img src="assets/images/collection/arrivals2.png" alt="new-arrivals images">
-									<div class="single-new-arrival-bg-overlay"></div>
-									<div class="sale bg-2">
-										<p>sale</p>
-									</div>
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a href="#">add <span>to </span> cart</a>
-										</p>
-										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p>
-									</div>
-								</div>
-								<h4><a href="#">single armchair</a></h4>
-								<p class="arrival-product-price">$80.00</p>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img src="assets/images/collection/arrivals3.png" alt="new-arrivals images">
-									<div class="single-new-arrival-bg-overlay"></div>
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a href="#">add <span>to </span> cart</a>
-										</p>
-										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p>
-									</div>
-								</div>
-								<h4><a href="#">wooden armchair</a></h4>
-								<p class="arrival-product-price">$40.00</p>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img src="assets/images/collection/arrivals4.png" alt="new-arrivals images">
-									<div class="single-new-arrival-bg-overlay"></div>
-									<div class="sale bg-1">
-										<p>sale</p>
-									</div>
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a href="#">add <span>to </span> cart</a>
-										</p>
-										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p>
-									</div>
-								</div>
-								<h4><a href="#">stylish chair</a></h4>
-								<p class="arrival-product-price">$100.00</p>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img src="assets/images/collection/arrivals5.png" alt="new-arrivals images">
-									<div class="single-new-arrival-bg-overlay"></div>
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a href="#">add <span>to </span> cart</a>
-										</p>
-										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p>
-									</div>
-								</div>
-								<h4><a href="#">modern chair</a></h4>
-								<p class="arrival-product-price">$120.00</p>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img src="assets/images/collection/arrivals6.png" alt="new-arrivals images">
-									<div class="single-new-arrival-bg-overlay"></div>
-									<div class="sale bg-1">
-										<p>sale</p>
-									</div>
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a href="#">add <span>to </span> cart</a>
-										</p>
-										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p>
-									</div>
-								</div>
-								<h4><a href="#">mapple wood dinning table</a></h4>
-								<p class="arrival-product-price">$140.00</p>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img src="assets/images/collection/arrivals7.png" alt="new-arrivals images">
-									<div class="single-new-arrival-bg-overlay"></div>
-									<div class="sale bg-2">
-										<p>sale</p>
-									</div>
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a href="#">add <span>to </span> cart</a>
-										</p>
-										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p>
-									</div>
-								</div>
-								<h4><a href="#">arm chair</a></h4>
-								<p class="arrival-product-price">$90.00</p>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img src="assets/images/collection/arrivals8.png" alt="new-arrivals images">
-									<div class="single-new-arrival-bg-overlay"></div>
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a href="#">add <span>to </span> cart</a>
-										</p>
-										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p>
-									</div>
-								</div>
-								<h4><a href="#">wooden bed</a></h4>
-								<p class="arrival-product-price">$140.00</p>
-							</div>
-						</div> --}}
 					</div>
 				</div>
 			</div><!--/.container-->
@@ -838,9 +648,9 @@ nav.navbar.bootsnav ul.nav > li > a {
 
 		<section id="sofa-collection" style = "z-index:0;">
 			<div class="owl-carousel owl-theme" id="collection-carousel">
-				<div class="sofa-collection collectionbg1">
+				<div class="sofa-collection collectionbg1" style = "background:url({{asset('assets/images/mainhome_from_db/'.$mainhome[0]->img_tagline ) }});background-size:cover;background-repeat:no-repeat;">
 					<div class="container">
-						<div class="sofa-collection-txt" style = "text-align:justify;">
+						<div class="sofa-collection-txt" style = "text-align:justify; " >
 							<h2>Pelayanan Terbaik !</h2>
 							<p>
 								Kami mulai dengan mendengarkan ide dan harapan Anda. Tim ahli kami akan membantu merealisasikan desain yang sesuai dengan visi Anda.	Dengan menggunakan bahan berkualitas tinggi dan teknologi terkini, kami memastikan setiap produk yang kami buat memiliki daya tahan dan estetika yang luar biasa.						
@@ -864,74 +674,25 @@ nav.navbar.bootsnav ul.nav > li > a {
 				</div><!--/.section-header-->
 				<div class="feature-content">
 					<div class="row">
+						@foreach($testi as $t)
 						<div class = "col col-sm-4 col-md-3 col-xs-6 mt-5">
 							<div class="single-feature">
-								<img src="assets/images/features/f1.jpg" alt="feature image">
+								<img class = "gbr" src="{{asset('assets/images/testimony_from_db/'.$t->img.'')}}" alt="feature image" style = "height:200px;width:100%;" >
 								<div class="single-feature-txt text-center">
 									<p>
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
-										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
-										<span class="feature-review">(45 review)</span>
+										<i class="fa fa-star"></i>
+										<span class="feature-review">({{$t->rating}} review)</span>
 									</p>
 									<h3><a href="#">designed sofa</a></h3>
-									<h5>$160.00</h5>
 								</div>
 							</div>
 						</div>
-						<div class = "col col-sm-4 col-md-3 col-xs-6 mt-5">
-							<div class="single-feature">
-								<img src="assets/images/features/f2.jpg" alt="feature image">
-								<div class="single-feature-txt text-center">
-									<p>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
-										<span class="feature-review">(45 review)</span>
-									</p>
-									<h3><a href="#">dinning table </a></h3>
-									<h5>$200.00</h5>
-								</div>
-							</div>
-						</div>
-						<div class = "col col-sm-4 col-md-3 col-xs-6 mt-5">
-							<div class="single-feature">
-								<img src="assets/images/features/f3.jpg" alt="feature image">
-								<div class="single-feature-txt text-center">
-									<p>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
-										<span class="feature-review">(45 review)</span>
-									</p>
-									<h3><a href="#">chair and table</a></h3>
-									<h5>$100.00</h5>
-								</div>
-							</div>
-						</div>
-						<div class = "col col-sm-4 col-md-3 col-xs-6 mt-5">
-							<div class="single-feature">
-								<img src="assets/images/features/f4.jpg" alt="feature image">
-								<div class="single-feature-txt text-center">
-									<p>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
-										<span class="feature-review">(45 review)</span>
-									</p>
-									<h3><a href="#">modern arm chair</a></h3>
-									<h5>$299.00</h5>
-								</div>
-							</div>
-						</div>
+						@endforeach
+					
 					</div>
 				</div>
 			</div><!--/.container-->
@@ -1183,15 +944,15 @@ nav.navbar.bootsnav ul.nav > li > a {
 					// something like $('#footAd').slideup();
 					if(status_animasi_summary == "on"){
 						setInterval(() => {
-							if(jumlah_client<1000){
+							if(jumlah_client<{{$mainhome[0]->summary_client}}){
 								jumlah_client+=5;
 								$("#jumlah_client").text(jumlah_client+ "++");
 							}
-							if(jumlah_proyek<=250){
+							if(jumlah_proyek<={{$mainhome[0]->summary_project}}){
 								$("#jumlah_proyek").text(jumlah_proyek + "++");
 								jumlah_proyek+=1;
 							}
-							if(jumlah_lokasi<100){
+							if(jumlah_lokasi<{{$mainhome[0]->summary_location}}){
 								jumlah_lokasi+=1;
 								$("#jumlah_lokasi").text(jumlah_lokasi + "++");
 							}

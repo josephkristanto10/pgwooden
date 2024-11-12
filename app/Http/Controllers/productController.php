@@ -19,7 +19,7 @@ class productController extends Controller
     public function index_main(){
         // $menu = "product";
         $bestseller = BestSeller::join("product","product.id",'=','best_seller.id_product')->orderBy("order_number","asc")->get();
-        $product = Product::all();
+        $product = Product::where("product.status","=","on")->select("*")->get();
         return view("product", compact("product", "bestseller"));
     }
     // admin
@@ -97,6 +97,17 @@ class productController extends Controller
         }
 
         return response()->json(['status' => $status, 'message' => $errormes]);
+    }
+
+    public function delete_products(Request $request){
+        $myid = $request->data_product;
+        $status_product = Product::where("id","=",$myid)->get();
+        $set_status = "on";
+        if($status_product[0]->status == "on"){
+            $set_status = "off";
+        }
+        $delete_product = Product::where("id","=",$myid)->update(["status"=>$set_status]);
+        return response()->json(['status' => "200", 'message' => "ok"]);
     }
 
     /**

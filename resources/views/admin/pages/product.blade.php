@@ -17,6 +17,7 @@
 <html lang="en">
 
 <head>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -391,7 +392,7 @@
         },
         {
            "render": function ( data, type, row ) {
-             return '<button class="btn btn-primary btn-sm" onclick="terima">Lihat</button>';
+             return '<button class="btn btn-danger btn-sm" onclick="deleteproduct('+row.id+')">x</button>';
            }
         }
       ],
@@ -440,6 +441,51 @@
         }
       });
     });
+
+    function deleteproduct(id_product){
+      
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+      $.ajax({
+        type: "post",
+        url: "{{route('delete_product')}}",
+        data: {
+          "data_product":id_product
+        },
+
+        dataType: "json",
+        success: function (response) {
+          if(response.status == "200"){
+            $("#form_add_product").trigger("reset");
+            t.ajax.reload();
+            Swal.fire({
+              title: "Success",
+              text: "Change Status Successfully",
+              icon: "success",
+              confirmButtonColor: "#3085d6",
+              allowOutsideClick:false,
+              confirmButtonText: "ok"
+            }).then((result) => {
+              $("#close_modal_add_product").click();
+            });
+          }
+          else{
+            Swal.fire({
+              title: "Error",
+              text: "Please input the requirement field",
+              icon: "error",
+              confirmButtonColor: "#3085d6",
+              confirmButtonText: "ok"
+            }).then((result) => {
+            
+            });
+          }
+        }
+      });
+    }
 </script>
 <script>
     var win = navigator.platform.indexOf('Win') > -1;

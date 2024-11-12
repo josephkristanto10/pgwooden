@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\MainWebsite;
+use DataTables;
+use Session;
 
 class mainhomeController extends Controller
 {
@@ -13,9 +16,54 @@ class mainhomeController extends Controller
      */
     public function index()
     {
-        $menu = "mainhome";
-        return view("admin.pages.mainhome", compact("menu"));
+        if(Session::has("superuser")){
+            $all_Data = MainWebsite::all();
+            $menu = "mainhome";
+            return view("admin.pages.mainhome", compact("menu","all_Data"));    
+        }
+        else{
+            return redirect("/datacenter");
+        }
+
     }
+    public function update_background_utama(Request $request){
+        $image = $request->file('file_image');
+        $image_name = "bgutama.".$image->getClientOriginalExtension();
+        $update_product = MainWebsite::where("id","=",1)->update(["img_slogan" => $image_name]);
+        // $image->storeAs('public/assets/images/product_from_db', $image_name);
+        $image->move(public_path()."/assets/images/mainhome_from_db",$image_name);
+        return response()->json(['status' => "200", 'message' => $image_name]);
+    }
+
+    public function update_background_aboutus(Request $request){
+        $image = $request->file('file_image');
+        $image_name = "bgaboutus.".$image->getClientOriginalExtension();
+        $update_product = MainWebsite::where("id","=",1)->update(["img_about_us" => $image_name]);
+        // $image->storeAs('public/assets/images/product_from_db', $image_name);
+        $image->move(public_path()."/assets/images/mainhome_from_db",$image_name);
+        return response()->json(['status' => "200", 'message' => $image_name]);
+    }
+
+    public function update_background_tagline(Request $request){
+        $image = $request->file('file_image');
+        $image_name = "bgtagline.".$image->getClientOriginalExtension();
+        $update_product = MainWebsite::where("id","=",1)->update(["img_tagline" => $image_name]);
+        // $image->storeAs('public/assets/images/product_from_db', $image_name);
+        $image->move(public_path()."/assets/images/mainhome_from_db",$image_name);
+        return response()->json(['status' => "200", 'message' => $image_name]);
+    }
+    public function update_summary(Request $request){
+        $data1 = $request->client;
+        $data2 = $request->proyek;
+        $data3 = $request->lokasi;
+        
+        $update_product = MainWebsite::where("id","=",1)->update(["summary_client" => $data1]);
+        $update_product = MainWebsite::where("id","=",1)->update(["summary_project" => $data2]);
+        $update_product = MainWebsite::where("id","=",1)->update(["summary_location" => $data3]);
+        
+        return response()->json(['status' => "200", 'message' => "ok"]);
+    }
+    
 
     /**
      * Show the form for creating a new resource.

@@ -51,9 +51,9 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Portofolio</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Testimony</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Portofolio</h6>
+          <h6 class="font-weight-bolder mb-0">Testimony</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -162,7 +162,6 @@
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
-   
       <div class="row">
         <div class="col-lg-12">
           <div class="row">
@@ -172,10 +171,10 @@
                 <div class="card-header pb-0 p-3">
                   <div class="row">
                     <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Portofolio List</h6>
+                      <h6 class="mb-0">Testimony List</h6>
                     </div>
                     <div class="col-6 text-end">
-                      <a class="btn bg-gradient-dark mb-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="javascript:;"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New Portofolio</a>
+                      <a class="btn bg-gradient-dark mb-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="javascript:;"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New testimony</a>
                     </div>
                   </div>
                 </div>
@@ -188,9 +187,8 @@
                                   <tr>
                                     <th>No</th>
                                       <th>Name</th>
+                                      <th>Rating</th>
                                       <th>Img</th>
-                                      {{-- <th>Description</th> --}}
-                                      {{-- <th>Img</th> --}}
                                       <th>Status</th>
                                       <th>Action</th>
                                   </tr>
@@ -246,40 +244,36 @@
           </div>
         </div>
       </footer>
-
-      <!-- Button trigger modal -->
-      {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Launch static backdrop modal
-      </button> --}}
-
-      <!-- Modal -->
-      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">Add Portofolio</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form id = "form_add_portofolio" method="post" enctype="multipart/form-data">
-                @csrf
-                <label>Name</label>
-                <input type = "text" name = "add_porto_name" class = "form-control" />
-                <label>Image</label>
-                <input type = "file" name = "add_porto_image" class = "form-control" />
-                {{-- <label>Description</label>
-                <input type = "text" name = "add_porto_description" class = "form-control" /> --}}
-
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary"  id = "close_modal_add_porto" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn bg-gradient-dark " id = "button_submit_add_porto">add</button>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Add Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id = "form_add_product" method="post" enctype="multipart/form-data">
+                  @csrf
+                  <label>Name</label>
+                  <input type = "text" name = "add_testimony_name" class = "form-control" />
+                
+                  <label>Rating</label>
+                  <input type = "text" name = "add_testimony_rating" class = "form-control" />
+                  <label>Image</label>
+                  <input type = "file" name = "add_testimony_image" class = "form-control" />
+                  {{-- <label>Description</label>
+                  <input type = "text" name = "add_porto_description" class = "form-control" /> --}}
+  
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id = "close_modal_add_product" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn bg-gradient-dark " id = "button_submit_add_testimony">add</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
     </div>
   </main>
   <div class="fixed-plugin">
@@ -359,18 +353,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap.min.js"></script>
-
-
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
   <script>
     
       var t =$('#product_datatable').DataTable({
       processing: true,
       serverSide: true,
       autoWidth: true,
+      ajax: '{{route('getalltestimony')}}',
       order: [[ 0, "desc" ]],
-      ajax: '{{route('getallportofolio')}}',
       columns: [
         {
            render: function (data, type, row, meta) {
@@ -378,12 +369,15 @@
            },
         },
         {
-           data: 'name'
+           data: 'title'
+        },
+        {
+           data: 'rating'
         },
         {
           "render": function ( data, type, row ) {
             // var url_gambar = "{{asset('/images/')}}/product/" + row.images;
-             var gambar = "{{ asset('/assets/images/portofolio_from_db') }}" +"/"+row.img;
+             var gambar = "{{ asset('/assets/images/testimony_from_db') }}" +"/"+row.img;
              return '<img src = "'+gambar+'" style = "width:50px;height:50px;" alt = "Not Found :( ">';
             // return  gambar;
            }
@@ -393,37 +387,39 @@
         },
         {
            "render": function ( data, type, row ) {
-            return '<button class="btn btn-danger btn-sm" onclick="deleteportofolio('+row.id+')">x</button>';
+             return '<button class="btn btn-danger btn-sm" onclick="deletetestimony('+row.id+')">x</button>';
            }
         }
       ],
     });
+
     t.columns.adjust().draw();
-    
-    $("#button_submit_add_porto").click(function (e) { 
+
+
+    $("#button_submit_add_testimony").click(function (e) { 
       e.preventDefault();
-      var form = document.getElementById('form_add_portofolio');
+      var form = document.getElementById('form_add_product');
       var formData = new FormData(form);
         $.ajax({
         type: "post",
-        url: "{{route('upload_porto')}}",
+        url: "{{route('upload_testimony')}}",
         data: formData,
         processData: false,
         contentType: false,
         dataType: "json",
         success: function (response) {
           if(response.status == "200"){
-            $("#form_add_portofolio").trigger("reset");
+            $("#form_add_product").trigger("reset");
             t.ajax.reload();
             Swal.fire({
               title: "Success",
-              text: "Portofolio Data Inserted Successfully",
+              text: "Testimony Data Inserted Successfully",
               icon: "success",
               confirmButtonColor: "#3085d6",
               allowOutsideClick:false,
               confirmButtonText: "ok"
             }).then((result) => {
-              $("#close_modal_add_porto").click();
+              $("#close_modal_add_product").click();
             });
           }
           else{
@@ -434,21 +430,14 @@
               confirmButtonColor: "#3085d6",
               confirmButtonText: "ok"
             }).then((result) => {
-              // if (result.isConfirmed) {
-              //   Swal.fire({
-              //     title: "Deleted!",
-              //     text: "Your file has been deleted.",
-              //     icon: "success"
-              //   });
-              // }
+            
             });
           }
         }
       });
     });
 
-
-    function deleteportofolio(id_porto){
+    function deletetestimony(id_testimony){
       
       $.ajaxSetup({
           headers: {
@@ -457,9 +446,9 @@
       });
       $.ajax({
         type: "post",
-        url: "{{route('delete_porto')}}",
+        url: "{{route('delete_testimony')}}",
         data: {
-          "data_porto":id_porto
+          "data_testimony":id_testimony
         },
 
         dataType: "json",
@@ -492,7 +481,6 @@
         }
       });
     }
-   
 </script>
 <script>
     var win = navigator.platform.indexOf('Win') > -1;

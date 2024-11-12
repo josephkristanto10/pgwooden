@@ -17,6 +17,7 @@
 <html lang="en">
 
 <head>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -174,19 +175,50 @@
                       <h6 class="mb-0">Main Home</h6>
                     </div>
                     <div class="col-6 text-end">
-                      <a class="btn bg-gradient-dark mb-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="javascript:;"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New Portofolio</a>
+                      {{-- <a class="btn bg-gradient-dark mb-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="javascript:;"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New Portofolio</a> --}}
                     </div>
                   </div>
                 </div>
                 <div class="card-body p-3">
                   <div class="row">
                     <div class="col-md-12 mb-md-0 mb-4">
-                      <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
-                       
+                      <div class="row">
+                        <br>
+                        <h5>Gambar</h5>
+                        <div class="row">
+                          <div class="col-12" style = "padding:10px;">Gambar Background Utama <input id = "bg_utama_change"  type = "file"  class = "form-control w-20" style = "display:inline-block;"><br><span id = "bg_utama_image_preview"><img  src = "{{asset('assets/images/mainhome_from_db/'.$all_Data[0]->img_slogan)}}" style = "height:150px;width:150px;"></span></div>
+                          <div class="col-12" style = "padding:10px;">Gambar About Us <input id = "bg_about_us" type = "file"  class = "form-control w-20" style = "display:inline-block;"><br><span id = "bg_about_us_image_preview"><img src = "{{asset('assets/images/mainhome_from_db/'.$all_Data[0]->img_about_us)}}" style = "height:150px;width:150px;"></span></div>
+                          <div class="col-12" style = "padding:10px;">Gambar Pelayanan <input id = "bg_tagline" type = "file" class = "form-control w-20" style = "display:inline-block;"><br><span id = "bg_tagline_image_preview"><img src = "{{asset('assets/images/mainhome_from_db/'.$all_Data[0]->img_tagline)}}" style = "height:150px;width:150px;"></span></div>
+                        </div>
+                        {{-- <button class = "btn btn-info" style = "">Ganti</button> --}}
+                        <hr style = "margin-top:10px;margin-bottom:10px;">
+                     
+                        
+
                       </div>
                     </div>
                    
                   </div>
+                  <div class="row">
+                    <div class="col-md-12 mb-md-0 mb-4">
+                      <div class="row">
+                        <br>
+                        <h5>Summary Project</h5>
+                        <div class="row">
+                          <div class="col-12" style = "padding:10px;">Jumlah Client <input id = "jumlah_client" class = "form-control w-20" style = "display:inline-block;" value = "{{$all_Data[0]->summary_client}}"></div>
+                          <div class="col-12" style = "padding:10px;">Jumlah Proyek <input id = "jumlah_proyek" class = "form-control w-20" style = "display:inline-block;" value = "{{$all_Data[0]->summary_project}}"></div>
+                          <div class="col-12" style = "padding:10px;">Jumlah Lokasi <input id = "jumlah_lokasi" class = "form-control w-20" style = "display:inline-block;" value = "{{$all_Data[0]->summary_location}}"></div>
+                        </div>
+                        <button class = "btn btn-info" id = "ganti_jumlah" style = "">Ganti</button>
+                        <hr style = "margin-top:10px;margin-bottom:10px;">
+                     
+                        
+
+                      </div>
+                    </div>
+                   
+                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -351,6 +383,220 @@
    
 </script>
 <script>
+
+// bg_utama_change
+
+// 
+
+$("#bg_utama_change").on("change", function (e) { 
+
+  e.preventDefault();
+  var file_data = $(this).prop('files')[0];   
+    var form_data = new FormData();                  
+    form_data.append('file_image', file_data);
+    $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+        $.ajax({
+        type: "post",
+        url: "{{route('update_bg_utama')}}",
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,   
+        success: function (response) {
+          if(response.status == "200"){
+            $("#form_add_product").trigger("reset");
+            // t.ajax.reload();
+            Swal.fire({
+              title: "Success",
+              text: "Product Data Inserted Successfully",
+              icon: "success",
+              confirmButtonColor: "#3085d6",
+              allowOutsideClick:false,
+              confirmButtonText: "ok"
+            }).then((result) => {
+              var myimage = "{{asset('assets/images/mainhome_from_db/')}}/" + response.message;
+              $("#bg_utama_image_preview").html('<img  src = "'+myimage+'" style = "height:150px;width:150px;">');
+              // $("#close_modal_add_product").click();
+            });
+          }
+          else{
+            Swal.fire({
+              title: "Error",
+              text: "Please input the requirement field",
+              icon: "error",
+              confirmButtonColor: "#3085d6",
+              confirmButtonText: "ok"
+            }).then((result) => {
+            
+            });
+          }
+        }
+      });  
+});
+
+$("#bg_about_us").on("change", function (e) { 
+
+e.preventDefault();
+var file_data = $(this).prop('files')[0];   
+  var form_data = new FormData();                  
+  form_data.append('file_image', file_data);
+  $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+      $.ajax({
+      type: "post",
+      url: "{{route('update_bg_aboutus')}}",
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,   
+      success: function (response) {
+        if(response.status == "200"){
+          $("#form_add_product").trigger("reset");
+          // t.ajax.reload();
+          Swal.fire({
+            title: "Success",
+            text: "Product Data Inserted Successfully",
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+            allowOutsideClick:false,
+            confirmButtonText: "ok"
+          }).then((result) => {
+            var myimage = "{{asset('assets/images/mainhome_from_db/')}}/" + response.message;
+            $("#bg_about_us_image_preview").html('<img  src = "'+myimage+'" style = "height:150px;width:150px;">');
+            // $("#close_modal_add_product").click();
+            
+// 
+          });
+        }
+        else{
+          Swal.fire({
+            title: "Error",
+            text: "Please input the requirement field",
+            icon: "error",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "ok"
+          }).then((result) => {
+          
+          });
+        }
+      }
+    });  
+});
+
+
+$("#bg_tagline").on("change", function (e) { 
+
+e.preventDefault();
+var file_data = $(this).prop('files')[0];   
+  var form_data = new FormData();                  
+  form_data.append('file_image', file_data);
+  $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+      $.ajax({
+      type: "post",
+      url: "{{route('update_bg_tagline')}}",
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,   
+      success: function (response) {
+        if(response.status == "200"){
+          $("#form_add_product").trigger("reset");
+          // t.ajax.reload();
+          Swal.fire({
+            title: "Success",
+            text: "Product Data Inserted Successfully",
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+            allowOutsideClick:false,
+            confirmButtonText: "ok"
+          }).then((result) => {
+            var myimage = "{{asset('assets/images/mainhome_from_db/')}}/" + response.message;
+            $("#bg_tagline_image_preview").html('<img  src = "'+myimage+'" style = "height:150px;width:150px;">');
+            // $("#close_modal_add_product").click();
+            
+// bg_tagline_image_preview
+          });
+        }
+        else{
+          Swal.fire({
+            title: "Error",
+            text: "Please input the requirement field",
+            icon: "error",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "ok"
+          }).then((result) => {
+          
+          });
+        }
+      }
+    });  
+});
+
+
+
+$("#ganti_jumlah").click(function (e) { 
+      e.preventDefault();
+      
+
+      var valuess_client = $("#jumlah_client").val();
+      var valuess_proyek = $("#jumlah_proyek").val();
+      var valuess_lokasi = $("#jumlah_lokasi").val();
+
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+        $.ajax({
+        type: "post",
+        url: "{{route('update_summarys')}}",
+        data: {
+            "client" : valuess_client,
+            "proyek" : valuess_proyek,
+            "lokasi" : valuess_lokasi,
+        },
+        dataType: "json",
+        success: function (response) {
+          if(response.status == "200"){
+            $("#form_add_product").trigger("reset");
+            // t.ajax.reload();
+            Swal.fire({
+              title: "Success",
+              text: "Summary Updated   Successfully",
+              icon: "success",
+              confirmButtonColor: "#3085d6",
+              allowOutsideClick:false,
+              confirmButtonText: "ok"
+            }).then((result) => {
+              // $("#close_modal_add_product").click();
+            });
+          }
+          else{
+            Swal.fire({
+              title: "Error",
+              text: "Please input the requirement field",
+              icon: "error",
+              confirmButtonColor: "#3085d6",
+              confirmButtonText: "ok"
+            }).then((result) => {
+            
+            });
+          }
+        }
+      });
+    });
+
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
       var options = {

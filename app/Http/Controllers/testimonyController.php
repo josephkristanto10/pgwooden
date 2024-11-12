@@ -3,71 +3,49 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Portofolio;
+use App\Models\Testimony;
 use DataTables;
 use Session;
 
-class portofolioController extends Controller
+class testimonyController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index_main(){
-        $portofolio = Portofolio::where("status","=","on")->select("*")->get();
-        return view("portofolio", compact("portofolio"));
-    }
     public function index()
     {
         if(Session::has("superuser")){
-            $menu = "portofolio";
-            return view("admin.pages.portofolio", compact("menu"));        
+            $menu = "testimony";
+            return view("admin.pages.testimony", compact("menu"));           
         }
         else{
             return redirect("/datacenter");
         }
-    
     }
 
-    public function see_table_all_porto(){
-        $data = Portofolio::orderBy("id","desc")->get();
-        return DataTables::of($data)->make(true);
-    }
-
-    public function delete_portos(Request $request){
-        $myid = $request->data_porto;
-        $status_porto = Portofolio::where("id","=",$myid)->get();
-        $set_status = "on";
-        if($status_porto[0]->status == "on"){
-            $set_status = "off";
-        }
-        $delete_porto = Portofolio::where("id","=",$myid)->update(["status"=>$set_status]);
-        return response()->json(['status' => "200", 'message' => "ok"]);
-    }
-
-    public function upload_new_portofolio(Request $request){
-     
-    
+    public function upload_new_testimony(Request $request){
         $status = "";
         $errormes = "";
-        if($request->file('add_porto_image') || $request->add_porto_name != ""){
+
+        if($request->file('add_testimony_image') != "" && $request->add_testimony_rating != ""  && $request->add_testimony_name != "" ){
             $status = "200";
 
-            $insert_porto = Portofolio::create([
+            $insert_testimony = Testimony::create([
                 'img'     => "-",
-                'name'     => $request->add_porto_name,
-                'description'     => "-",
+                'title'     => $request->add_testimony_name,
+                'rating'     => $request->add_testimony_rating,
                 'status'   => "on",
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
 
-            $image = $request->file('add_porto_image');
-            $image_name = "porto_".$insert_porto->id.".".$image->getClientOriginalExtension();
-            $update_porto = Portofolio::where("id","=",$insert_porto->id)->update(["img" => $image_name]);
-            // $image->storeAs('public/assets/images/portofolio_from_db', $image_name);
-            $image->move(public_path()."/assets/images/portofolio_from_db",$image_name);
+            $image = $request->file('add_testimony_image');
+            $image_name = "testimony_".$insert_testimony->id.".".$image->getClientOriginalExtension();
+            $update_testimony = Testimony::where("id","=",$insert_testimony->id)->update(["img" => $image_name]);
+            // $image->storeAs('public/assets/images/product_from_db', $image_name);
+            $image->move(public_path()."/assets/images/testimony_from_db",$image_name);
             $errormes = "ok";
         }
         else{
@@ -76,6 +54,24 @@ class portofolioController extends Controller
         }
 
         return response()->json(['status' => $status, 'message' => $errormes]);
+    }
+
+    public function delete_testimonys(Request $request){
+       
+            $myid = $request->data_testimony;
+            $status_testimony = Testimony::where("id","=",$myid)->get();
+            $set_status = "on";
+            if($status_testimony[0]->status == "on"){
+                $set_status = "off";
+            }
+            $delete_testi = Testimony::where("id","=",$myid)->update(["status"=>$set_status]);
+            return response()->json(['status' => "200", 'message' => "ok"]);
+        
+    }
+
+    public function see_table_all_testimony(){
+        $data = Testimony::all();
+        return DataTables::of($data)->make(true);
     }
 
     /**

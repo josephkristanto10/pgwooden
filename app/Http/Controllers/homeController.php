@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Portofolio;
 use App\Models\Product;
 use App\Models\BestSeller;
+use App\Models\Testimony;
+use App\Models\MainWebsite;
+
 
 class homeController extends Controller
 {
@@ -16,10 +19,12 @@ class homeController extends Controller
      */
     public function index()
     {
+        $mainhome = MainWebsite::all();
         $bestseller = BestSeller::join("product","product.id",'=','best_seller.id_product')->orderBy("order_number","asc")->get();
-        $portofolio = Portofolio::all();
-        $product = Product::all();
-        return view("index",compact("portofolio","product", "bestseller"));
+        $portofolio = Portofolio::where("status","=","on")->select("*")->get();
+        $product = Product::where("product.status","=","on")->select("*")->get();
+        $testi = Testimony::where("testimony.status","=","on")->select("*")->get();
+        return view("index",compact("portofolio","product", "bestseller", "testi", "mainhome"));
     }
 
     /**
