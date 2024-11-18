@@ -611,12 +611,32 @@ nav.navbar.bootsnav ul.nav > li > a {
         
         <!--Custom JS-->
         <script src="{{asset('assets/js/custom.js')}}"></script>
-        
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </body>
 	<script>
 
+
+$('.carousel_category').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:3
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:4
+        }
+    }
+});
+
+
 var data_pilihan_category = 0;
 var keywords= "";
+var status_search = "ok";
 $(document).on('click', '.mylinks a', function(event){
  
  event.preventDefault(); 
@@ -630,8 +650,12 @@ function fetch_data(page)
  $.ajax({
   url:"/pagination/fetch_data_index?page="+page,
   data:{"category" : data_pilihan_category, "keyword" : keywords},
+  complete:function(){
+	status_search = "ok";
+        },
   success:function(data)
   {
+	status_search = "ok";
    $('#replace_product').html(data);
 
    $('.owl-carousel').owlCarousel({
@@ -654,15 +678,50 @@ function fetch_data(page)
  });
  
 }
+
+
+
+$('#keyword_product').keypress(function(event){
+  if(event.keyCode == 13){
+	search_button();
+  }
+});
+
 function search_button(){
-	 keywords = $("#keyword_product").val();
-	 fetch_data(1);
+
+	if(status_search = "ok"){
+		status_search = "no";
+		keywords = $("#keyword_product").val();
+		fetch_data(1);
+	}
+	else{
+		Swal.fire({
+              title: "Tunggu",
+              text: "Silahkan tunggu sampai data selesai dicari",
+              icon: "info",
+              confirmButtonColor: "#3085d6",
+              confirmButtonText: "ok"
+            });
+		}
 }
 function change_category(id_category){
-	$("#keyword_product").val("");
-	data_pilihan_category = id_category;
-	keywords = "";
-	fetch_data(1);
+	if(status_search = "ok"){
+		status_search = "no";
+		$("#keyword_product").val("");
+		data_pilihan_category = id_category;
+		keywords = "";
+		fetch_data(1);
+	}
+	else{
+			Swal.fire({
+              title: "Tunggu",
+              text: "Silahkan tunggu sampai data selesai dicari",
+              icon: "info",
+              confirmButtonColor: "#3085d6",
+              confirmButtonText: "ok"
+            });
+	}
+
 }
 		$(document).ready(function () {
 			$("#title_pg_wooden").css("opacity","1");
@@ -723,22 +782,7 @@ $('.product').owlCarousel({
     }
 });
 
-$('.carousel_category').owlCarousel({
-    loop:true,
-    margin:10,
-    nav:true,
-    responsive:{
-        0:{
-            items:3
-        },
-        600:{
-            items:3
-        },
-        1000:{
-            items:4
-        }
-    }
-});
+
 
 
 
