@@ -661,7 +661,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 									</div>
 								</div>
 								<h4><a href="#">{{$pro->name}}</a></h4>
-								<p class="arrival-product-price">{{$pro->price}}</p>
+								<p class="arrival-product-price">Rp {{number_format($pro->price, 0)}}</p>
 							</div>
 						</div>
 						@endforeach

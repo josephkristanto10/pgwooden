@@ -21,7 +21,7 @@
 									</div>
 								</div>
 								<h4><a href="https://wa.me/+6281328835401?text=Halo%20PGD%20Wooden%20House%20Furniture%2C%20Saya%20dapat%20ini%20dari%20website.%20Saya%20ingin%20tanya%20tanya%20tentang%20produknya%20dengan%20id%20{{$pro->id}}%20dan%20portofolio%22nya%20ya">{{$pro->name}}</a></h4>
-								<p class="arrival-product-price">{{$pro->price}}</p>
+								<p class="arrival-product-price">Rp {{number_format($pro->price, 0)}}</p>
 						
 							</div>
 						</div>
