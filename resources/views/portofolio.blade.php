@@ -117,7 +117,10 @@ nav.navbar.bootsnav ul.nav > li > a {
 		padding-right:10px;
 	}
 
-
+	#home{
+		height:0px !important;
+	
+	}
 @media (max-width: 576px) { 
 	#home{
 		height:700px;
@@ -144,7 +147,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 		line-height:0px;
 	}
 	nav{
-		opacity:0;
+		opacity:1;
 		transition: 1s;
 	}
 	.sticked{
@@ -183,6 +186,18 @@ nav.navbar.bootsnav ul.nav > li > a {
 	.sofa-collection::before, .sofa-collection::after{
 		width:100% !important;
 	}
+	.navbar-header a.navbar-brand, .navbar-header a.navbar-brand:hover, .navbar-header a.navbar-brand:focus {
+  display: inline-block;
+  color: #131312;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 25px 0px;
+  text-transform: capitalize;
+}
+
+.single-new-arrival-bg img{
+		height: 200px !important;
+	}
 	
 }
 
@@ -211,7 +226,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 		line-height:0px;
 	}
 	nav{
-		opacity:0;
+		opacity:1;
 	}
 	.sticked{
 		opacity:1;
@@ -253,6 +268,18 @@ nav.navbar.bootsnav ul.nav > li > a {
 	}
 	.sofa-collection::before, .sofa-collection::after{
 		width:100% !important;
+	}
+	.navbar-header a.navbar-brand, .navbar-header a.navbar-brand:hover, .navbar-header a.navbar-brand:focus {
+  display: inline-block;
+  color: #131312;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 25px 0px;
+  text-transform: capitalize;
+}
+
+.single-new-arrival-bg img{
+		height: 200px !important;
 	}
  }
 
@@ -366,7 +393,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 
 
 
-		<section id="new-arrivals" class="new-arrivals" style = "margin-top:40px;">
+		<section id="new-arrivals" class="new-arrivals" style = "margin-top:20px;">
 			<div class="container">
 				<div class="section-header">
 					<h2>Portofolio Terbaik Kami</h2>

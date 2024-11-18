@@ -108,6 +108,10 @@ nav.navbar.bootsnav ul.nav > li > a {
   padding-bottom:20px;
 }
 
+.single-new-arrival-bg .gbr{
+		height: 300px !important;
+	}
+
 /* .single-inner-populer-products{
 	padding: 0px !important;
 } */
@@ -284,6 +288,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 	.desktoponly{
 		display: block ;
 	}
+	
  }
 
 
@@ -291,6 +296,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 	.desktoponly{
 		display: block ;
 	}
+	
 }
 
 
@@ -298,13 +304,28 @@ nav.navbar.bootsnav ul.nav > li > a {
 	.desktoponly{
 		display: block ;
 	}
+	/* .single-new-arrival-bg .gbr{
+		height: 300px !important;
+	} */
+
+	
+ }
+
+ .single-new-arrival-bg:hover img{
+	transform: scale(1);
+ }
+ .owl-nav{
+	display: none;
+ }
+ .owl-dots{
+	display: none;
  }
 		</style>
     </head>
 	
 	<body>
-	
-		<header id="home" class="welcome-hero" style = "background:url({{asset('assets/images/mainhome_from_db/'.$mainhome[0]->img_slogan ) }});background-size:cover;background-repeat:no-repeat;">
+
+		<header id="home" class="welcome-hero"  style = 'z-index:30000;background:url("{{asset('assets/images/mainhome_from_db/'.$mainhome[0]->img_slogan )}}");background-size:cover;background-repeat:no-repeat;'>
 
 			<div id="header-carousel" style = "height:100%;" class="carousel slide carousel-fade" data-ride="carousel">
 				<!--/.carousel-indicator -->
@@ -622,9 +643,13 @@ nav.navbar.bootsnav ul.nav > li > a {
 						<div class = "col col-sm-4 col-md-4 col-xs-6 mt-5">
 							<div class="single-new-arrival">
 								<div class="single-new-arrival-bg">
-									<img class = "gbr" src="{{asset('assets/images/product_from_db/'.$pro->img)}}" alt="new-arrivals images">
+									<div class="owl-carousel owl-theme">
+										<div class="item">		<img class = "gbr" src="{{asset('assets/images/product_from_db/'.$pro->img)}}" alt="new-arrivals images"></div>
+										<div class="item">		<img class = "gbr" src="{{asset('assets/images/product_from_db/'.$pro->img_second)}}" alt="new-arrivals images"></div>
+										<div class="item">		<img class = "gbr" src="{{asset('assets/images/product_from_db/'.$pro->img_third)}}" alt="new-arrivals images"></div>
+									</div>
 									<div class="single-new-arrival-bg-overlay"></div>
-									<div class="sale bg-1">
+									<div class="sale bg-1" style = "z-index:2;">
 										<p>sale</p>
 									</div>
 									<div class="new-arrival-cart">
@@ -655,7 +680,6 @@ nav.navbar.bootsnav ul.nav > li > a {
 							<p>
 								Kami mulai dengan mendengarkan ide dan harapan Anda. Tim ahli kami akan membantu merealisasikan desain yang sesuai dengan visi Anda.	Dengan menggunakan bahan berkualitas tinggi dan teknologi terkini, kami memastikan setiap produk yang kami buat memiliki daya tahan dan estetika yang luar biasa.						
 							</p>
-						
 							<a  href = "https://wa.me/+6281328835401?text=Halo%20PGD%20Wooden%20House%20Furniture%2C%20Saya%20dapat%20ini%20dari%20website.%20Saya%20ingin%20tanya%20tanya%20tentang%20produk%20dan%20proyek%22nya%20ya"><button class="btn-cart welcome-add-cart sofa-collection-btn w-100" id = "button_hubungi_wa"  >
 								Hubungi Kami Via WA &nbsp;<img src = "{{asset('assets/logo/logo_wa.png')}}" style = "width:25px;height:25px;display:inline-block;"/>
 							</button></a>
@@ -927,6 +951,10 @@ nav.navbar.bootsnav ul.nav > li > a {
 
     </body>
 	<script>
+
+
+
+
 		$(document).ready(function () {
 			$("#title_pg_wooden").css("opacity","1");
 			$("#button_pg_wooden").css("opacity","1");
@@ -963,9 +991,23 @@ nav.navbar.bootsnav ul.nav > li > a {
 					}
 				}
 			});
-// 			jumlah_client
-// jumlah_proyek
-// jumlah_lokasi
+
+			$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:1
+        },
+        1000:{
+            items:1
+        }
+    }
+})	
 		});
 	</script>
 	

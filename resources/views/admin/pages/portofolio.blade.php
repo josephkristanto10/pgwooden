@@ -274,7 +274,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary"  id = "close_modal_add_porto" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn bg-gradient-dark " id = "button_submit_add_porto">add</button>
+              <button type="button" class="btn bg-gradient-dark " id = "button_submit_add_porto" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Loadings">add</button>
             </div>
           </div>
         </div>
@@ -411,7 +411,25 @@
         processData: false,
         contentType: false,
         dataType: "json",
+        beforeSend: function() {
+          $("#button_submit_add_porto").prop("disabled", true);
+          $("#button_submit_add_porto").button("loading");
+          $("#button_submit_add_porto").text("Uploading ... ");
+	      },
+        error:function(){
+            $("#button_submit_add_porto").button("reset");
+          $("#button_submit_add_porto").prop("disabled", false);
+          $("#button_submit_add_porto").text("Add");
+        },
+        complete:function(){
+          $("#button_submit_add_porto").button("reset");
+          $("#button_submit_add_porto").prop("disabled", false);
+          $("#button_submit_add_porto").text("Add");
+        },
         success: function (response) {
+          $("#button_submit_add_porto").button("reset");
+          $("#button_submit_add_porto").prop("disabled", false);
+          $("#button_submit_add_porto").text("Add");
           if(response.status == "200"){
             $("#form_add_portofolio").trigger("reset");
             t.ajax.reload();

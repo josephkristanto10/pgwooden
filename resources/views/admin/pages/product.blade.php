@@ -185,7 +185,8 @@
                             <table id="product_datatable" class="table table-striped w-100" style="width:100% !important;">
                               <thead>
                                   <tr>
-                                    <th>No</th>
+                                      <th>No</th>
+                                      <th>Category</th>
                                       <th>Name</th>
                                       <th>Price</th>
                                       <th>Description</th>
@@ -256,22 +257,33 @@
               <div class="modal-body">
                 <form id = "form_add_product" method="post" enctype="multipart/form-data">
                   @csrf
+                  <label>Category</label>
+                  <select name = "id_category" class = "form-control" >
+                    @foreach($category as $c)
+                    <option value = "{{$c->category_id}}">{{$c->name}}</option>
+                    @endforeach
+                  </select>
                   <label>Name</label>
                   <input type = "text" name = "add_product_name" class = "form-control" />
                   <label>Price</label>
                   <input type = "text" name = "add_product_price" class = "form-control" />
                   <label>Description</label>
                   <input type = "text" name = "add_product_desc" class = "form-control" />
-                  <label>Image</label>
+                  <label>Image (Primary)</label>
                   <input type = "file" name = "add_product_image" class = "form-control" />
+                  <label>Image (Second)</label>
+                  <input type = "file" name = "add_product_image_second" class = "form-control" />
+                  <label>Image (third)</label>
+                  <input type = "file" name = "add_product_image_third" class = "form-control" />
                   {{-- <label>Description</label>
                   <input type = "text" name = "add_porto_description" class = "form-control" /> --}}
   
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id = "close_modal_add_product" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn bg-gradient-dark " id = "button_submit_add_product">add</button>
+                <button type="button" class="btn btn-secondary" id = "close_modal_add_product" data-bs-dismiss="modal"  >Close</button>
+                <button type="button" class="btn btn-primary btn-lg" id="button_submit_add_product" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Loadings">add</button>
+                {{-- <button class="btn btn-primary btn-lg test" id="load2" data-loading-text="<i class='fas fa-circle-notch fa-spin'></i>">add</button> --}}
               </div>
             </div>
           </div>
@@ -351,13 +363,20 @@
   <script src="{{asset('admin/assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
   <script src="{{asset('admin/assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
 
+
+
   {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+ 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
   <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+ 
   <script>
-    
+   
+
       var t =$('#product_datatable').DataTable({
       processing: true,
       serverSide: true,
@@ -369,6 +388,9 @@
            render: function (data, type, row, meta) {
              return meta.row + meta.settings._iDisplayStart + 1;
            },
+        },
+        {
+           data: 'category_name'
         },
         {
            data: 'name'
@@ -400,10 +422,12 @@
 
     t.columns.adjust().draw();
 
+ 
+    $("#button_submit_add_product").click(function () { 
+  
 
-    $("#button_submit_add_product").click(function (e) { 
-      e.preventDefault();
       var form = document.getElementById('form_add_product');
+           
       var formData = new FormData(form);
         $.ajax({
         type: "post",
@@ -412,7 +436,25 @@
         processData: false,
         contentType: false,
         dataType: "json",
+        beforeSend: function() {
+          $("#button_submit_add_product").prop("disabled", true);
+          $("#button_submit_add_product").button("loading");
+          $("#button_submit_add_product").text("Uploading ... ");
+	      },
+        error:function(){
+            $("#button_submit_add_product").button("reset");
+          $("#button_submit_add_product").prop("disabled", false);
+          $("#button_submit_add_product").text("Add");
+        },
+        complete:function(){
+          $("#button_submit_add_product").button("reset");
+          $("#button_submit_add_product").prop("disabled", false);
+          $("#button_submit_add_product").text("Add");
+        },
         success: function (response) {
+          $("#button_submit_add_product").button("reset");
+          $("#button_submit_add_product").prop("disabled", false);
+          $("#button_submit_add_product").text("Add");
           if(response.status == "200"){
             $("#form_add_product").trigger("reset");
             t.ajax.reload();
@@ -421,16 +463,18 @@
               text: "Product Data Inserted Successfully",
               icon: "success",
               confirmButtonColor: "#3085d6",
-              allowOutsideClick:false,
+              // allowOutsideClick:false,
               confirmButtonText: "ok"
             }).then((result) => {
-              $("#close_modal_add_product").click();
+              
+    $(".button-loader").button('loading');
+              // $("#close_modal_add_product").click();     $("#button_submit_add_product").button('reset');
             });
           }
           else{
             Swal.fire({
               title: "Error",
-              text: "Please input the requirement field",
+              text: "Please input the requirement fields",
               icon: "error",
               confirmButtonColor: "#3085d6",
               confirmButtonText: "ok"
@@ -440,8 +484,9 @@
           }
         }
       });
-    });
 
+      // e.preventDefault();
+    });
     function deleteproduct(id_product){
       
       $.ajaxSetup({
@@ -500,6 +545,9 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{asset('admin/assets/js/soft-ui-dashboard.min.js?v=1.0.3')}}"></script>
+  <script>
+
+  </script>
 </body>
 
 </html>

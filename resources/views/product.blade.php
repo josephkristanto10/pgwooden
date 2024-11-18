@@ -117,10 +117,29 @@ nav.navbar.bootsnav ul.nav > li > a {
 		padding-right:10px;
 	}
 
+	.single-new-arrival-bg .gbr{
+		height: 300px !important;
+	}
+	.populer-products-content img{
+		height: 300px !important;
+	}
+	.single-new-arrival-bg img{
+		height: 300px !important;
+		animation: fadeIn 1s;
+		/* transition: all 1.5s; */
+	}
+	@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
 
+	#home{
+		height:0px !important;
+	
+	}
 @media (max-width: 576px) { 
 	#home{
-		height:700px;
+		height:0px;
 	
 	}
 	.single-inner-populer-products {
@@ -144,7 +163,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 		line-height:0px;
 	}
 	nav{
-		opacity:0;
+		opacity:1;
 		transition: 1s;
 	}
 	.sticked{
@@ -156,6 +175,8 @@ nav.navbar.bootsnav ul.nav > li > a {
 	.wrap-sticky nav.navbar.bootsnav.sticked .navbar-header a.navbar-brand, .wrap-sticky nav.navbar.bootsnav.sticked .navbar-header a.navbar-brand:hover, .wrap-sticky nav.navbar.bootsnav.sticked .navbar-header a.navbar-brand:focus{
 		padding:10px;
 	}
+
+	
 	.mobile_toogle{display:inline-block !important;}
 	.wrap-sticky nav.navbar.bootsnav.sticked ul.nav > li > a {padding:20px;}
 	.menu-ui-design{
@@ -183,13 +204,30 @@ nav.navbar.bootsnav ul.nav > li > a {
 	.sofa-collection::before, .sofa-collection::after{
 		width:100% !important;
 	}
-	
+	.single-new-arrival-bg .gbr{
+		height: 200px !important;
+	}
+	.single-new-arrival-bg img{
+		height: 200px !important;
+	}
+	.populer-products-content img{
+		height: 200px !important;
+	}
+	.navbar-header a.navbar-brand, .navbar-header a.navbar-brand:hover, .navbar-header a.navbar-brand:focus {
+  display: inline-block;
+  color: #131312;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 25px 0px;
+  text-transform: capitalize;
+}
 }
 
 
 @media (max-width: 768px) { 
 	#home{
-		height:700px;
+		height:0px;
+	
 	}
 	.single-inner-populer-products {
 		padding: 0px !important;
@@ -211,7 +249,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 		line-height:0px;
 	}
 	nav{
-		opacity:0;
+		opacity:1;
 	}
 	.sticked{
 		opacity:1;
@@ -254,6 +292,23 @@ nav.navbar.bootsnav ul.nav > li > a {
 	.sofa-collection::before, .sofa-collection::after{
 		width:100% !important;
 	}
+	.single-new-arrival-bg .gbr{
+		height: 200px !important;
+	}
+	.single-new-arrival-bg img{
+		height: 200px !important;
+	}
+	.populer-products-content img{
+		height: 200px !important;
+	}
+	.navbar-header a.navbar-brand, .navbar-header a.navbar-brand:hover, .navbar-header a.navbar-brand:focus {
+  display: inline-block;
+  color: #131312;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 25px 0px;
+  text-transform: capitalize;
+}
  }
 
 
@@ -261,6 +316,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 	.desktoponly{
 		display: block ;
 	}
+	
  }
 
 
@@ -276,19 +332,57 @@ nav.navbar.bootsnav ul.nav > li > a {
 		display: block ;
 	}
  }
+
+ .single-new-arrival-bg:hover img{
+	transform: scale(1);
+ }
+ .owl-nav{
+	display: none;
+ }
+ .owl-dots{
+	display: none;
+ }
+ .animated_underline {
+
+  display: inline-block;
+  transition:all 2.5s;
+ 
+}
+
+.animated_underline:hover {
+
+	font-weight:bold;
+	font-size:16px;
+}
+
+.animated_underline::after {
+	font-weight:bold;
+
+  content: '';
+  width: 0px;
+  height: 2px;
+  display: block;
+  background: black;
+  transition: 800ms;
+}
+
+.animated_underline:hover::after {
+
+  width: 100%;
+}
 		</style>
     </head>
 	
 	<body>
 	
-		<header id="home" class="welcome-hero" style = "background:url({{asset('assets/images/slider/background_slider.jpg')}});background-size:cover;background-repeat:no-repeat;">
+		<header id="home" class="welcome-hero" style = "z-index:30000;" style = "background:url({{asset('assets/images/slider/background_slider.jpg')}});background-size:cover;background-repeat:no-repeat;">
 
 			
 			<!-- top-area Start -->
 			<div class="top-area">
-				<div class="header-area">
+				<div class="header-area" style = "z-index:30000;">
 					<!-- Start Navigation -->
-				    <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
+				    <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy" style = "z-index:30000;"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
 
 				        <!-- Start Top Search -->
 				        <div class="top-search">
@@ -317,54 +411,11 @@ nav.navbar.bootsnav ul.nav > li > a {
 		
 		
 
-		{{-- <section id="Ringkasan Proyek" class="new-arrivals" style = "padding: 35px 0 10px;">
-			<div class="container">
-				<div class="section-header">
-					<h2>Summary Proyek</h2>
-				</div>
-				<div class="container " style = "margin-top:30px;">
-					<div class="populer-products-content">
-						<div class="row">
-							<div class="col-md-4">
-								<div class="single-populer-products">
-									
-									<h2><a href="#">Client</a></h2>
-									<h1 ><a href="#" style = "font-size:40px !important;"><span id = "jumlah_client">0</span></a></h1><br>
-									<div class="single-populer-products-para">
-										<p>Jumlah klien kami sampai detik ini yang kami layani untuk pembuatan custom furniture.</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="single-populer-products">
-									<h2><a href="#">Proyek</a></h2>
-									<h1 ><a href="#" style = "font-size:40px !important;"><span id = "jumlah_proyek">153++</span></a></h1><br>
-									<div class="single-populer-products-para">
-										<p>Beberapa Proyek yang sudah kami terima dan kami kerjakan, baik secara B2B, maupun B2C</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="single-populer-products">
-									<h2><a href="#">Lokasi</a></h2>
-									<h1 ><a href="#" style = "font-size:40px !important;"><span id = "jumlah_lokasi">10++</span></a></h1><br>
-									<div class="single-populer-products-para">
-										<p>Beberapa proyek kami sudah tersebar di beberapa lokasi. Proyek kami tersebar
-											di kota jepara, surabaya, jakarta dan lain lain.
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div><!--/.container-->
-		
-		</section> --}}
+	
 
 	
 
-		<section id="populer-products" class="populer-products"  style="margin-top:30px;">
+		{{-- <section id="populer-products" class="populer-products"  style="margin-top:30px;">
 			
 			<div class="container">
 				<div class="section-header">
@@ -385,145 +436,53 @@ nav.navbar.bootsnav ul.nav > li > a {
 				</div>
 			</div>
 
-		</section>
-
-
-		<section id="new-arrivals" class="new-arrivals">
-			<div class="container">
-				<div class="section-header">
-					<h2>Produk Kami</h2>
-				</div><!--/.section-header-->
-				<div class="new-arrivals-content">
-					<div class="row">
-						@foreach($product as $pro)
-						<div class = "col col-sm-4 col-md-4 col-xs-6 mt-5">
-							<div class="single-new-arrival">
-								<a href = "https://wa.me/+6281328835401?text=Halo%20PGD%20Wooden%20House%20Furniture%2C%20Saya%20dapat%20ini%20dari%20website.%20Saya%20ingin%20tanya%20tanya%20tentang%20produknya%20dengan%20id%20{{$pro->id}}%20dan%20portofolio%22nya%20ya">
-								<div class="single-new-arrival-bg">
-									<img src="{{asset('assets/images/product_from_db/'.$pro->img)}}" alt="new-arrivals images">
-									<div class="single-new-arrival-bg-overlay"></div>
-									<div class="sale bg-1">
-										<p>sale</p>
-									</div>
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a href="https://wa.me/+6281328835401?text=Halo%20PGD%20Wooden%20House%20Furniture%2C%20Saya%20dapat%20ini%20dari%20website.%20Saya%20ingin%20tanya%20tanya%20tentang%20produknya%20dengan%20id%20{{$pro->id}}%20dan%20portofolio%22nya%20ya">Contact Whatsapp </a>
-										</p>
-
-									</div>
-								</div>
-								<h4><a href="https://wa.me/+6281328835401?text=Halo%20PGD%20Wooden%20House%20Furniture%2C%20Saya%20dapat%20ini%20dari%20website.%20Saya%20ingin%20tanya%20tanya%20tentang%20produknya%20dengan%20id%20{{$pro->id}}%20dan%20portofolio%22nya%20ya">{{$pro->name}}</a></h4>
-								<p class="arrival-product-price">{{$pro->price}}</p>
-							</a>
-							</div>
-						</div>
-						@endforeach
-	
-					</div>
-				</div>
-			</div><!--/.container-->
-		
-		</section>
-
-
-
-		
-	
-	
-
-		{{-- <section id="blog" class="blog">
-			<div class="container">
-				<div class="section-header">
-					<h2>latest blog</h2>
-				</div><!--/.section-header-->
-				<div class="blog-content">
-					<div class="row">
-						<div class="col-sm-4">
-							<div class="single-blog">
-								<div class="single-blog-img">
-									<img src="assets/images/blog/b1.jpg" alt="blog image">
-									<div class="single-blog-img-overlay"></div>
-								</div>
-								<div class="single-blog-txt">
-									<h2><a href="#">Why Brands are Looking at Local Language</a></h2>
-									<h3>By <a href="#">Robert Norby</a> / 18th March 2018</h3>
-									<p>
-										Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.... 
-									</p>
-								</div>
-							</div>
-							
-						</div>
-						<div class="col-sm-4">
-							<div class="single-blog">
-								<div class="single-blog-img">
-									<img src="assets/images/blog/b2.jpg" alt="blog image">
-									<div class="single-blog-img-overlay"></div>
-								</div>
-								<div class="single-blog-txt">
-									<h2><a href="#">Why Brands are Looking at Local Language</a></h2>
-									<h3>By <a href="#">Robert Norby</a> / 18th March 2018</h3>
-									<p>
-										Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.... 
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="single-blog">
-								<div class="single-blog-img">
-									<img src="assets/images/blog/b3.jpg" alt="blog image">
-									<div class="single-blog-img-overlay"></div>
-								</div>
-								<div class="single-blog-txt">
-									<h2><a href="#">Why Brands are Looking at Local Language</a></h2>
-									<h3>By <a href="#">Robert Norby</a> / 18th March 2018</h3>
-									<p>
-										Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.... 
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div><!--/.container-->
-			
-		</section>
-
-		<section id="clients"  class="clients">
-			<div class="container">
-				<div class="owl-carousel owl-theme" id="client">
-						<div class="item">
-							<a href="#">
-								<img src="assets/images/clients/c1.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<div class="item">
-							<a href="#">
-								<img src="assets/images/clients/c2.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<div class="item">
-							<a href="#">
-								<img src="assets/images/clients/c3.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<div class="item">
-							<a href="#">
-								<img src="assets/images/clients/c4.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<div class="item">
-							<a href="#">
-								<img src="assets/images/clients/c5.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-					</div><!--/.owl-carousel-->
-
-			</div><!--/.container-->
-
 		</section> --}}
+		
+		<section id="populer-productss" class="populer-products"  style="margin-top:50px;">
+			
+			<div class="container">
+				<div class="section-header">
+					<h2>Daftar Produk Kami</h2>
+				</div>
+				
+				<div class = "row" style = "margin-top:35px;padding-left:15px;padding-right:15px;">
+					<div class = "col-md-8" style = "box-shadow: #f3f3f3 0px 7px 29px 0px;border: 1px solid #f1f1f1; border-radius:15px;padding:15px;height:75px;">
+						<div class="owl-carousel owl-theme carousel_category" style = "padding-top:10px;">
+							<div class="item" style = "color:#131312;" onclick = "change_category(0)"><span class = "animated_underline ">Semua</span></div>
+
+							@foreach($category as $key => $c)
+							
+							<div class="item" style = "color:#131312;" onclick = "change_category({{$c->category_id}})"><span class = "animated_underline @if($key == 0)  @endif">{{$c->name}}</span></div>
+							@endforeach
+							{{-- <div class="item">		<img class = "gbr" src="{{asset('assets/images/product_from_db/'.$pro->img)}}" alt="new-arrivals images"></div>
+							<div class="item">		<img class = "gbr" src="{{asset('assets/images/product_from_db/'.$pro->img_second)}}" alt="new-arrivals images"></div>
+							<div class="item">		<img class = "gbr" src="{{asset('assets/images/product_from_db/'.$pro->img_third)}}" alt="new-arrivals images"></div> --}}
+						</div>
+					</div>
+					<div class = "col-md-4" style = "box-shadow: #f3f3f3 0px 7px 29px 0px;border: 1px solid #f1f1f1; border-radius:15px;padding:15px;height:75px;"><div><input class = "form-control" id = "keyword_product" style = "border:0px;float:left;width:85%;" placeholder="Cari Disini ..."> <div id = "search_button" onclick = search_button() style = "height:30px;width:30px;border-radius:40px;background-color:#d8924c;float:left;margin-top:5px;margin-left:5px;color:white;"><i class="fa fa-search" aria-hidden="true" style = "margin-left:8px;margin-top:5px;"></i>
+					</div> </div>
+				</div>
+				
+				
+			</div>
+
+		</section>
+
+
+		<section id="new-arrivals" class="new-arrivals" style = "padding-left:10px;padding-right:10px;padding-top:10px;margin-top: 20px !important;">
+			<div class="container" style = "padding:0px;">
+				<div class="section-header">
+					{{-- <h2>Produk Kami</h2> --}}
+				</div><!--/.section-header-->
+				<div class="new-arrivals-content" style = "margin-top: 20px !important;">
+					<div class="row" id = "replace_product">
+						@include('product_card')
+					</div>
+				</div>
+			</div><!--/.container-->
+		
+		</section>
+
 
 		<section id="newsletter" style = "padding-bottom:3px !important;"  class="newsletter">
 			<div class="container">
@@ -657,6 +616,56 @@ nav.navbar.bootsnav ul.nav > li > a {
         
     </body>
 	<script>
+
+var data_pilihan_category = 0;
+var keywords= "";
+$(document).on('click', '.mylinks a', function(event){
+ 
+ event.preventDefault(); 
+ var page = $(this).attr('href').split('page=')[1];
+
+ fetch_data(page);
+});
+
+function fetch_data(page)
+{
+ $.ajax({
+  url:"/pagination/fetch_data_index?page="+page,
+  data:{"category" : data_pilihan_category, "keyword" : keywords},
+  success:function(data)
+  {
+   $('#replace_product').html(data);
+
+   $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:1
+        },
+        1000:{
+            items:1
+        }
+    }
+});
+  }
+ });
+ 
+}
+function search_button(){
+	 keywords = $("#keyword_product").val();
+	 fetch_data(1);
+}
+function change_category(id_category){
+	$("#keyword_product").val("");
+	data_pilihan_category = id_category;
+	keywords = "";
+	fetch_data(1);
+}
 		$(document).ready(function () {
 			$("#title_pg_wooden").css("opacity","1");
 			$("#button_pg_wooden").css("opacity","1");
@@ -693,9 +702,48 @@ nav.navbar.bootsnav ul.nav > li > a {
 					}
 				}
 			});
+
+			
 // 			jumlah_client
 // jumlah_proyek
 // jumlah_lokasi
+
+$('.product').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:1
+        },
+        1000:{
+            items:1
+        }
+    }
+});
+
+$('.carousel_category').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:3
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:4
+        }
+    }
+});
+
+
+
 		});
 	</script>
 	

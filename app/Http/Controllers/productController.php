@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\BestSeller;
+use App\Models\Category;
 use DataTables;
 use Session;
 
@@ -18,16 +19,18 @@ class productController extends Controller
     // main view
     public function index_main(){
         // $menu = "product";
+        $category = Category::where("category.status","=","on")->select("*")->get();
         $bestseller = BestSeller::join("product","product.id",'=','best_seller.id_product')->orderBy("order_number","asc")->get();
-        $product = Product::where("product.status","=","on")->select("*")->get();
-        return view("product", compact("product", "bestseller"));
+        $products = Product::where("product.status","=","on")->paginate(20);
+        return view("product", compact("products", "bestseller", "category"));
     }
     // admin
     public function index() 
     {
         if(Session::has("superuser")){
+            $category = Category::orderBy("category_id","desc")->get();
             $menu = "product";
-            return view("admin.pages.product", compact("menu"));           
+            return view("admin.pages.product", compact("menu", "category"));           
         }
         else{
             return redirect("/datacenter");
@@ -53,7 +56,7 @@ class productController extends Controller
       }
 
     public function see_table_all_product(){
-        $data = Product::all();
+        $data = Product::join("category","category.category_id","=","product.category_id")->select("product.*", "category.name as category_name")->orderBy("product.id","desc")->get();
         return DataTables::of($data)->make(true);
     }
     public function update_best_sellers(Request $request){
@@ -71,11 +74,14 @@ class productController extends Controller
         $status = "";
         $errormes = "";
         
-        if($request->file('add_product_image') != "" && $request->add_product_name != "" && $request->add_product_price != "" && $request->add_product_desc != "" ){
+        if($request->file('add_product_image') != "" && $request->add_product_name != "" && $request->add_product_price != "" && $request->add_product_desc != "" && $request->id_category != ""){
             $status = "200";
 
             $insert_product = Product::create([
+                'category_id' => $request->id_category,
                 'img'     => "-",
+                'img_second'     => "-",
+                'img_third'     => "-",
                 'name'     => $request->add_product_name,
                 'description'     => $request->add_product_desc,
                 'price'     => $request->add_product_price,
@@ -85,10 +91,17 @@ class productController extends Controller
             ]);
 
             $image = $request->file('add_product_image');
-            $image_name = "product_".$insert_product->id.".".$image->getClientOriginalExtension();
-            $update_product = Product::where("id","=",$insert_product->id)->update(["img" => $image_name]);
+            $image2 = $request->file('add_product_image_second');
+            $image3 = $request->file('add_product_image_third');
+            $image_name = "product_".$insert_product->id."_1.".$image->getClientOriginalExtension();
+            $image_name2 = "product_".$insert_product->id."_2.".$image2->getClientOriginalExtension();
+            $image_name3 = "product_".$insert_product->id."_3.".$image3->getClientOriginalExtension();
+
+            $update_product = Product::where("id","=",$insert_product->id)->update(["img" => $image_name, "img_second" => $image_name2, "img_third" => $image_name3]);
             // $image->storeAs('public/assets/images/product_from_db', $image_name);
             $image->move(public_path()."/assets/images/product_from_db",$image_name);
+            $image2->move(public_path()."/assets/images/product_from_db",$image_name2);
+            $image3->move(public_path()."/assets/images/product_from_db",$image_name3);
             $errormes = "ok";
         }
         else{
@@ -108,6 +121,43 @@ class productController extends Controller
         }
         $delete_product = Product::where("id","=",$myid)->update(["status"=>$set_status]);
         return response()->json(['status' => "200", 'message' => "ok"]);
+    }
+    public function fetch_data(Request $request){
+        $idcategory = $request->category;
+        $kata_kunci = "";
+        if($request->keyword){
+            $kata_kunci = $request->keyword;
+        }
+        
+            if($request->ajax())
+            {
+          
+                    if($idcategory == 0){
+                        // All Product
+                      
+                        if($kata_kunci == "") {
+                              // All Product, no keyword, no category
+                              $products =  Product::leftJoin("category", "category.category_id",'=',"product.category_id")->where("product.status", "=","on")->latest('product.id')->select("product.*","category.name as category_name", "category.category_id")->paginate(20);
+                        }
+                        else{
+                               // All Product, with keyword, no category
+                               $products =  Product::leftJoin("category", "category.category_id",'=',"product.category_id")->where("product.status", "=","on")->where("product.name",'like',"%".$kata_kunci."%")->latest('product.id')->select("product.*","category.name as category_name", "category.category_id")->paginate(20);
+
+                        }
+                    }
+                    else{
+                        // All Product, no keyword, with Category
+                        if($kata_kunci == "") {
+                            $products =  Product::leftJoin("category", "category.category_id",'=',"product.category_id")->where("category.category_id","=", $idcategory)->where("product.status", "=","on")->latest('product.id')->select("product.*","category.name as category_name", "category.category_id")->paginate(20);    
+                        }
+                        else{
+                            $products =  Product::leftJoin("category", "category.category_id",'=',"product.category_id")->where("category.category_id","=", $idcategory)->where("product.status", "=","on")->where("product.name",'like',"%".$kata_kunci."%")->latest('product.id')->select("product.*","category.name as category_name", "category.category_id")->paginate(20);    
+                        }
+                    }
+
+                return view('product_card', compact('products'))->render();
+            }
+        
     }
 
     /**

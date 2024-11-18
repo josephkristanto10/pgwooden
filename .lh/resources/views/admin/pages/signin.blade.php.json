@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 78,
+            "activePatchIndex": 79,
             "patches": [
                 {
                     "date": 1731069888586,
@@ -320,6 +320,10 @@
                 {
                     "date": 1731348211623,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n                 <img src=\"../assets/images/logos/dark-logo.svg\" width=\"180\" alt=\"\">\n                 <img src = \"{{asset('assets/logo/logo_pg_wooden.png')}}\">\n                 {{-- <p class=\"text-center\">PGD DATA CENTER</p> --}}\n                 <form id = \"formlogin\">\n-                  {{ csrf_token() }}\n+                <span style = \"color:white;\">  {{ csrf_token() }}</span>\n                   <div class=\"mb-3\">\n                     <label for=\"exampleInputEmail1\" class=\"form-label\">Username</label>\n                     <input type=\"email\" name = \"username\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\">\n                   </div>\n"
+                },
+                {
+                    "date": 1731824718027,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n <head>\n   <meta name=\"csrf-token\" content=\"{{ csrf_token() }}\">\n   <meta charset=\"utf-8\">\n   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n-  <title>Modernize Free</title>\n+  <title>PGD Wooden Furniture Data Center</title>\n   <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css\" integrity=\"sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N\" crossorigin=\"anonymous\">\n   <link rel=\"shortcut icon\" type=\"image/png\" href=\"{{asset('login/assets/images/logos/favicon.png')}}\" />\n   <link rel=\"stylesheet\" href=\"{{asset('login/assets/css/styles.min.css')}}\" />\n </head>\n"
                 }
             ],
             "date": 1731069888586,
