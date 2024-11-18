@@ -585,7 +585,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 									<div class="sale bg-1">
 										<p>sale</p>
 									</div>
-									<div class="new-arrival-cart">
+									<div class="new-arrival-cart" style = "z-index: 3;">
 										<p>
 											<span class="lnr lnr-cart"></span>
 								<a href = "https://wa.me/+6281328835401?text=Halo%20PGD%20Wooden%20House%20Furniture%2C%20Saya%20dapat%20ini%20dari%20website.%20Saya%20ingin%20tanya%20tanya%20tentang%20portofolio%20dengan%20id%20{{$por->id}}%20dan%20portofolio%22nya%20ya">Contact Whatsapp</a>
@@ -618,7 +618,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 								<img class = "gbr" src="{{asset('assets/images/product_from_db/'.$bs->img.'')}}" style = "height:300px;"  alt="populer-products images">
 							</div>
 							<h2><a href="https://wa.me/+6281328835401?text=Halo%20PGD%20Wooden%20House%20Furniture%2C%20Saya%20dapat%20ini%20dari%20website.%20Saya%20ingin%20tanya%20tanya%20tentang%20produknya%20dengan%20id%20{{$bs->id}}%20dan%20portofolio%22nya%20ya" style = "margin-top: 20px;">{{$bs->name}}</a></h2>
-							<div class="caption_populer_product" style = "margin-top: 20px;">
+							<div class="caption_populer_product" style = "margin-top: 20px;" >
 								<p>{{$bs->description}}.</p>
 							</div>
 						</div>
@@ -652,7 +652,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 									<div class="sale bg-1" style = "z-index:2;">
 										<p>sale</p>
 									</div>
-									<div class="new-arrival-cart">
+									<div class="new-arrival-cart" style = "z-index: 3;">
 										<p>
 											<span class="lnr lnr-cart"></span>
 											<a href="#">Contact Whatsapp </a>

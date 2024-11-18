@@ -454,9 +454,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 							
 							<div class="item" style = "color:#131312;" onclick = "change_category({{$c->category_id}})"><span class = "animated_underline @if($key == 0)  @endif">{{$c->name}}</span></div>
 							@endforeach
-							{{-- <div class="item">		<img class = "gbr" src="{{asset('assets/images/product_from_db/'.$pro->img)}}" alt="new-arrivals images"></div>
-							<div class="item">		<img class = "gbr" src="{{asset('assets/images/product_from_db/'.$pro->img_second)}}" alt="new-arrivals images"></div>
-							<div class="item">		<img class = "gbr" src="{{asset('assets/images/product_from_db/'.$pro->img_third)}}" alt="new-arrivals images"></div> --}}
+
 						</div>
 					</div>
 					<div class = "col-md-4" style = "box-shadow: #f3f3f3 0px 7px 29px 0px;border: 1px solid #f1f1f1; border-radius:15px;padding:15px;height:75px;"><div><input class = "form-control" id = "keyword_product" style = "border:0px;float:left;width:85%;" placeholder="Cari Disini ..."> <div id = "search_button" onclick = search_button() style = "height:30px;width:30px;border-radius:40px;background-color:#d8924c;float:left;margin-top:5px;margin-left:5px;color:white;"><i class="fa fa-search" aria-hidden="true" style = "margin-left:8px;margin-top:5px;"></i>
